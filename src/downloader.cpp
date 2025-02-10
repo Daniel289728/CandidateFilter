@@ -109,12 +109,24 @@ std::vector<std::string> Downloader::downloadAllData() {
 
     // Get the data folder path dynamically
     std::string dataFolderPath = getDataFolderPath();
-    std::cout << "Data folder path: " << dataFolderPath << std::endl;  // Debug line
+    std::cout << "Data folder path: " << dataFolderPath << std::endl;
+
+    // Hardcoded university names based on known URLs
+    std::vector<std::string> universityNames = {
+        "Polytechnic-University-of-Bucharest",
+        "University-of-Florida",
+        "University-of-Havana",
+        "University-of-São-Paulo"
+    };
 
     for (size_t i = 0; i < urls.size(); ++i) {
-        // Construct the filename dynamically, including correct extension
-        std::string filename = dataFolderPath + "/university_" + std::to_string(i + 1) + getFileExtension(urls[i]);
-        std::cout << "Downloading data to: " << filename << std::endl;  // Debug line
+        if (i >= universityNames.size()) {
+            std::cerr << "Error: More URLs than expected university names!" << std::endl;
+            break;
+        }
+
+        std::string filename = dataFolderPath + "/" + universityNames[i] + getFileExtension(urls[i]);
+        std::cout << "Downloading data to: " << filename << std::endl;
 
         if (downloadData(urls[i], filename)) {
             downloadedFiles.push_back(filename);  // Add successful file path to vector
@@ -125,7 +137,6 @@ std::vector<std::string> Downloader::downloadAllData() {
         }
     }
 
-    // Optionally, if you want to handle errors, you could return an empty vector on failure
     return success ? downloadedFiles : std::vector<std::string>();
 }
 

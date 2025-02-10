@@ -25,7 +25,7 @@ set(SOURCES
 )
 
 # Create executable
-add_executable(CandidateFilter ${SOURCES})
+add_executable(CandidateFilter ${SOURCES}  "src/candidateFilter.cpp" "src/candidateFilter.h")
 
 # Add required libraries
 find_package(CURL REQUIRED)

@@ -81,6 +81,14 @@ build CMakeFiles\CandidateFilter.dir\src\candidate.cpp.obj: CXX_COMPILER__Candid
   TARGET_COMPILE_PDB = CMakeFiles\CandidateFilter.dir\
   TARGET_PDB = bin\CandidateFilter.pdb
 
+build CMakeFiles\CandidateFilter.dir\src\candidateFilter.cpp.obj: CXX_COMPILER__CandidateFilter_unscanned_Debug C$:\Users\danie\Documents\Daniel\Trabajo\EightBit\CandidateFilter\src\candidateFilter.cpp || cmake_object_order_depends_target_CandidateFilter
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++17
+  INCLUDES = -IC:\Users\danie\Documents\Daniel\Trabajo\EightBit\CandidateFilter\external -external:IC:\Users\danie\vcpkg\installed\x64-windows\include -external:W0
+  OBJECT_DIR = CMakeFiles\CandidateFilter.dir
+  OBJECT_FILE_DIR = CMakeFiles\CandidateFilter.dir\src
+  TARGET_COMPILE_PDB = CMakeFiles\CandidateFilter.dir\
+  TARGET_PDB = bin\CandidateFilter.pdb
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target CandidateFilter
@@ -89,7 +97,7 @@ build CMakeFiles\CandidateFilter.dir\src\candidate.cpp.obj: CXX_COMPILER__Candid
 #############################################
 # Link the executable bin\CandidateFilter.exe
 
-build bin\CandidateFilter.exe: CXX_EXECUTABLE_LINKER__CandidateFilter_Debug CMakeFiles\CandidateFilter.dir\src\main.cpp.obj CMakeFiles\CandidateFilter.dir\src\downloader.cpp.obj CMakeFiles\CandidateFilter.dir\src\parser.cpp.obj CMakeFiles\CandidateFilter.dir\src\candidate.cpp.obj | C$:\Users\danie\vcpkg\installed\x64-windows\lib\zlib.lib C$:\Users\danie\vcpkg\installed\x64-windows\debug\lib\libcurl-d.lib C$:\Users\danie\vcpkg\installed\x64-windows\debug\lib\pugixml.lib
+build bin\CandidateFilter.exe: CXX_EXECUTABLE_LINKER__CandidateFilter_Debug CMakeFiles\CandidateFilter.dir\src\main.cpp.obj CMakeFiles\CandidateFilter.dir\src\downloader.cpp.obj CMakeFiles\CandidateFilter.dir\src\parser.cpp.obj CMakeFiles\CandidateFilter.dir\src\candidate.cpp.obj CMakeFiles\CandidateFilter.dir\src\candidateFilter.cpp.obj | C$:\Users\danie\vcpkg\installed\x64-windows\lib\zlib.lib C$:\Users\danie\vcpkg\installed\x64-windows\debug\lib\libcurl-d.lib C$:\Users\danie\vcpkg\installed\x64-windows\debug\lib\pugixml.lib
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
   LINK_FLAGS = /machine:x64 /debug /INCREMENTAL /subsystem:console
   LINK_LIBRARIES = C:\Users\danie\vcpkg\installed\x64-windows\lib\zlib.lib  C:\Users\danie\vcpkg\installed\x64-windows\debug\lib\libcurl-d.lib  C:\Users\danie\vcpkg\installed\x64-windows\debug\lib\pugixml.lib  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib

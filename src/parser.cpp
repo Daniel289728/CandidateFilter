@@ -1,6 +1,7 @@
 #include "parser.h"
 #include <iostream>
 #include <fstream>
+#include <algorithm>
 
 Parser::Parser() {
 }
@@ -8,102 +9,125 @@ Parser::Parser() {
 Parser::~Parser() {
 }
 
-void Parser::parseXML(const std::string& filePath) {
+std::vector<Candidate> Parser::parseXML(const std::string& filePath) {
+    std::vector<Candidate> candidates;
     pugi::xml_document doc;
     pugi::xml_parse_result result = doc.load_file(filePath.c_str());
 
     if (!result) {
-        std::cerr << "Failed to load XML file: " << filePath 
-                  << " Error: " << result.description() 
-                  << " At: " << result.offset << std::endl;
-        return;
+        std::cerr << "Failed to load XML file: " << filePath << " Error: " << result.description() << std::endl;
+        return candidates;
     }
 
     // Check if <root> node exists
     pugi::xml_node rootNode = doc.child("root");
     if (!rootNode) {
         std::cerr << "Error: Missing <root> node in XML file: " << filePath << std::endl;
-        return;
+        return candidates;
     }
 
-    // Print the number of <candidate> nodes found
-    int candidateCount = 0;
+    for (pugi::xml_node candidateNode = rootNode.child("candidate"); candidateNode; 
+         candidateNode = candidateNode.next_sibling("candidate")) {
+        Candidate candidate;
+        candidate.name = candidateNode.child("name").text().as_string();
+        candidate.GPA = candidateNode.child("GPA").text().as_double();
 
-    // Loop through all <candidate> nodes under <root>
-    for (pugi::xml_node candidateNode = rootNode.child("candidate"); candidateNode; candidateNode = candidateNode.next_sibling("candidate")) {
-        candidateCount++;
-
-        std::string name = candidateNode.child("name").text().as_string();
-        double GPA = candidateNode.child("GPA").text().as_double();
-
-        // Parse multiple <skills> tags
-        std::vector<std::string> skills;
-        for (pugi::xml_node skill : candidateNode.children("skills")) {
-            skills.push_back(skill.text().as_string());
+        pugi::xml_node skillsNode = candidateNode.child("skills");
+        for (pugi::xml_node skill = skillsNode.child("skill"); skill; skill = skill.next_sibling("skill")) {
+            candidate.skills.push_back(skill.text().as_string());
         }
 
-        std::string hobby = candidateNode.child("hobby").text().as_string();
+        candidate.hobby = candidateNode.child("hobby").text().as_string();
 
-        // Output the parsed values
-        std::cout << "Name: " << name << std::endl;
-        std::cout << "GPA: " << GPA << std::endl;
-        std::cout << "Skills: ";
-        for (const auto& skill : skills) {
-            std::cout << skill << " ";
-        }
-        std::cout << std::endl;
-        std::cout << "Hobby: " << hobby << std::endl;
+        candidates.push_back(candidate);
     }
 
-    if (candidateCount == 0) {
-        std::cerr << "No <candidate> nodes found in the XML file: " << filePath << std::endl;
-    }
+    return candidates;
 }
 
-
-void Parser::parseJSON(const std::string& filePath) {
+std::vector<Candidate> Parser::parseJSON(const std::string& filePath) {
+    std::vector<Candidate> candidates;
     std::ifstream inputFile(filePath);
+
     if (!inputFile.is_open()) {
         std::cerr << "Failed to open JSON file: " << filePath << std::endl;
-        return;
+        return candidates;
     }
 
     nlohmann::json jsonData;
     inputFile >> jsonData;
 
-    // Loop through each candidate in the JSON array
     for (const auto& candidate : jsonData) {
-        std::string name = candidate.contains("name") ? candidate["name"] : "N/A"; // Default if missing
-        double GPA = candidate.contains("GPA") ? candidate["GPA"] : -1.0; // Default GPA if missing
-        std::vector<std::string> skills = candidate.contains("skills") ? candidate["skills"].get<std::vector<std::string>>() : std::vector<std::string>{};
-        std::string hobby = candidate.contains("hobby") ? candidate["hobby"] : "N/A"; // Default if missing
+        Candidate c;
+        if (candidate.contains("name")) c.name = candidate["name"];
+        if (candidate.contains("GPA")) c.GPA = candidate["GPA"];
+        if (candidate.contains("skills")) c.skills = candidate["skills"].get<std::vector<std::string>>();
+        if (candidate.contains("hobby")) c.hobby = candidate["hobby"];
 
-        if (name == "N/A" || GPA == -1.0 || skills.empty()) {
-            std::cerr << "Warning: Missing critical information for candidate. Skipping..." << std::endl;
-            continue;  // Skip this candidate
-        }
-
-        // Output the parsed values
-        std::cout << "Name: " << name << std::endl;
-        std::cout << "GPA: " << GPA << std::endl;
-        std::cout << "Skills: ";
-        for (const auto& skill : skills) {
-            std::cout << skill << " ";
-        }
-        std::cout << std::endl;
-        std::cout << "Hobby: " << hobby << std::endl;
+        candidates.push_back(c);
     }
+
+    return candidates;
 }
 
+std::vector<Candidate> Parser::processDownloadedData(const std::vector<std::string>& dataFiles) {
+    std::vector<Candidate> allCandidates;
 
-void Parser::processDownloadedData(const std::vector<std::string>& dataFiles){
     for (const auto& filePath : dataFiles) {
         std::cout << "Processing: " << filePath << std::endl;
+
+        // Extract university name from the file
+        std::string universityName = extractUniversityName(filePath);
+        std::cout << "University: " << universityName << std::endl;
+
+        std::vector<Candidate> candidates;
+
         if (filePath.substr(filePath.find_last_of(".") + 1) == "xml") {
-            parseXML(filePath);
+            candidates = parseXML(filePath);
+        } else if (filePath.substr(filePath.find_last_of(".") + 1) == "json") {
+            candidates = parseJSON(filePath);
         }
-        else if (filePath.substr(filePath.find_last_of(".") + 1) == "json") {
-            parseJSON(filePath);
+
+        // Assign university name to each candidate (if necessary)
+        for (auto& candidate : candidates) {
+            candidate.university = universityName;  // Assuming 'university' is a field in Candidate class
+        }
+
+        allCandidates.insert(allCandidates.end(), candidates.begin(), candidates.end());
+    }
+
+    return allCandidates;
+}
+
+// Function to extract the university name from the file path
+#include <algorithm>  // For std::replace
+#include <filesystem> // For filesystem::path
+
+std::string Parser::extractUniversityName(const std::string& filePath) {
+    std::filesystem::path path(filePath);
+
+    // Get the filename without extension
+    std::string filename = path.stem().string();
+
+    // Replace hyphens or underscores with spaces
+    std::replace(filename.begin(), filename.end(), '-', ' ');
+    std::replace(filename.begin(), filename.end(), '_', ' ');
+
+    // Replace 'ã' with 'a'
+    std::replace(filename.begin(), filename.end(), 'ã', 'a');
+
+    // Capitalize the first letter of each word for better readability (optional)
+    bool capitalizeNext = true;
+    for (char& ch : filename) {
+        if (capitalizeNext && std::isalpha(ch)) {
+            ch = std::toupper(ch);
+            capitalizeNext = false;
+        }
+        else if (std::isspace(ch)) {
+            capitalizeNext = true;
         }
     }
+
+    return filename;
 }
+

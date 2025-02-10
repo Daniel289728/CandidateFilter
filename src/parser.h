@@ -5,15 +5,18 @@
 #include <filesystem>
 #include <nlohmann/json.hpp>  // For JSON parsing
 #include <pugixml.hpp>        // For XML parsing
+#include "candidate.h"
 
 class Parser
 {
 public:
 	Parser();
 	~Parser();
-	void parseXML(const std::string& filePath);
-	void parseJSON(const std::string& filePath);
-	void processDownloadedData(const std::vector<std::string>& dataFiles);
+	std::vector<Candidate> processDownloadedData(const std::vector<std::string>& dataFiles);
+private:
+	std::string extractUniversityName(const std::string& filePath);
+	std::vector<Candidate> parseXML(const std::string& filePath);
+	std::vector<Candidate> parseJSON(const std::string& filePath);
 };
 
 
