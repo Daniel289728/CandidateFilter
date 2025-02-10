@@ -10,10 +10,10 @@
 class CandidateScorer {
 public:
     // Constructor
-    CandidateScorer();
+    CandidateScorer() {}
 
     // Destructor
-    ~CandidateScorer();
+    ~CandidateScorer() {}
 
     // Method to assign scores to candidates
     void assignScores(std::vector<Candidate>& candidates);

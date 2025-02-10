@@ -518,6 +518,42 @@
 			"value" : ""
 		},
 		{
+			"name" : "CMAKE_HAVE_LIBC_PTHREAD",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Test CMAKE_HAVE_LIBC_PTHREAD"
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
+			"name" : "CMAKE_HAVE_PTHREADS_CREATE",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Have library pthreads"
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
+			"name" : "CMAKE_HAVE_PTHREAD_CREATE",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Have library pthread"
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
 			"name" : "CMAKE_HOME_DIRECTORY",
 			"properties" : 
 			[
@@ -1190,6 +1226,18 @@
 			"value" : "[C:/Users/danie/vcpkg/installed/x64-windows/share/curl/CURLConfig.cmake][c ][v8.12.0-DEV()]"
 		},
 		{
+			"name" : "FIND_PACKAGE_MESSAGE_DETAILS_Threads",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Details about finding Threads"
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "[TRUE][v()]"
+		},
+		{
 			"name" : "FIND_PACKAGE_MESSAGE_DETAILS_ZLIB",
 			"properties" : 
 			[
@@ -1282,6 +1330,18 @@
 			"value" : "C:/Users/danie/Documents/Daniel/Trabajo/EightBit/CandidateFilter"
 		},
 		{
+			"name" : "Skia_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "The directory containing a CMake configuration file for Skia."
+				}
+			],
+			"type" : "PATH",
+			"value" : "Skia_DIR-NOTFOUND"
+		},
+		{
 			"name" : "ZLIB_INCLUDE_DIR",
 			"properties" : 
 			[
@@ -1330,6 +1390,18 @@
 			"value" : "C:/Users/danie/vcpkg/installed/x64-windows/lib/zlib.lib"
 		},
 		{
+			"name" : "glfw3_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "The directory containing a CMake configuration file for glfw3."
+				}
+			],
+			"type" : "PATH",
+			"value" : "C:/Users/danie/vcpkg/installed/x64-windows/share/glfw3"
+		},
+		{
 			"name" : "nlohmann_json_DIR",
 			"properties" : 
 			[
@@ -1352,6 +1424,114 @@
 			],
 			"type" : "PATH",
 			"value" : "C:/Users/danie/vcpkg/installed/x64-windows/share/pugixml"
+		},
+		{
+			"name" : "unofficial-skia_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "The directory containing a CMake configuration file for unofficial-skia."
+				}
+			],
+			"type" : "PATH",
+			"value" : "C:/Users/danie/vcpkg/installed/x64-windows/share/unofficial-skia"
+		},
+		{
+			"name" : "z_vcpkg_skia_link_libs_FontSub_lib_DEBUG",
+			"properties" : 
+			[
+				{
+					"name" : "ADVANCED",
+					"value" : "1"
+				},
+				{
+					"name" : "HELPSTRING",
+					"value" : "Path to a library."
+				}
+			],
+			"type" : "FILEPATH",
+			"value" : "C:/Program Files (x86)/Windows Kits/10/Lib/10.0.22621.0/um/x64/fontsub.lib"
+		},
+		{
+			"name" : "z_vcpkg_skia_link_libs_FontSub_lib_RELEASE",
+			"properties" : 
+			[
+				{
+					"name" : "ADVANCED",
+					"value" : "1"
+				},
+				{
+					"name" : "HELPSTRING",
+					"value" : "Path to a library."
+				}
+			],
+			"type" : "FILEPATH",
+			"value" : "C:/Program Files (x86)/Windows Kits/10/Lib/10.0.22621.0/um/x64/fontsub.lib"
+		},
+		{
+			"name" : "z_vcpkg_skia_link_libs_OpenGL32_lib_DEBUG",
+			"properties" : 
+			[
+				{
+					"name" : "ADVANCED",
+					"value" : "1"
+				},
+				{
+					"name" : "HELPSTRING",
+					"value" : "Path to a library."
+				}
+			],
+			"type" : "FILEPATH",
+			"value" : "C:/Users/danie/vcpkg/installed/x64-windows/lib/OpenGL32.Lib"
+		},
+		{
+			"name" : "z_vcpkg_skia_link_libs_OpenGL32_lib_RELEASE",
+			"properties" : 
+			[
+				{
+					"name" : "ADVANCED",
+					"value" : "1"
+				},
+				{
+					"name" : "HELPSTRING",
+					"value" : "Path to a library."
+				}
+			],
+			"type" : "FILEPATH",
+			"value" : "C:/Users/danie/vcpkg/installed/x64-windows/lib/OpenGL32.Lib"
+		},
+		{
+			"name" : "z_vcpkg_skia_link_libs_Usp10_lib_DEBUG",
+			"properties" : 
+			[
+				{
+					"name" : "ADVANCED",
+					"value" : "1"
+				},
+				{
+					"name" : "HELPSTRING",
+					"value" : "Path to a library."
+				}
+			],
+			"type" : "FILEPATH",
+			"value" : "C:/Program Files (x86)/Windows Kits/10/Lib/10.0.22621.0/um/x64/USP10.Lib"
+		},
+		{
+			"name" : "z_vcpkg_skia_link_libs_Usp10_lib_RELEASE",
+			"properties" : 
+			[
+				{
+					"name" : "ADVANCED",
+					"value" : "1"
+				},
+				{
+					"name" : "HELPSTRING",
+					"value" : "Path to a library."
+				}
+			],
+			"type" : "FILEPATH",
+			"value" : "C:/Program Files (x86)/Windows Kits/10/Lib/10.0.22621.0/um/x64/USP10.Lib"
 		}
 	],
 	"kind" : "cache",

@@ -15,26 +15,33 @@ set(CMAKE_PREFIX_PATH "C:/Users/danie/vcpkg/installed/x64-windows")
 
 # Include directories for external dependencies
 include_directories(${PROJECT_SOURCE_DIR}/external)
+include_directories(${PROJECT_SOURCE_DIR}/src/backend)
+include_directories(C:/Users/danie/vcpkg/installed/x64-windows/include/skia)
+
 
 # Source files
 set(SOURCES
-    src/main.cpp
-    src/downloader.cpp
-    src/parser.cpp
-    src/candidate.cpp
-    src/candidateFilter.cpp
-    src/candidateScorer.cpp
+    src/ui/main.cpp
+    src/backend/downloader.cpp
+    src/backend/parser.cpp
+    src/backend/candidate.cpp
+    src/backend/candidateFilter.cpp
+    src/backend/candidateScorer.cpp
+    src/backend/candidateFilter.cpp
+    src/backend/candidateScorer.cpp
+    src/ui/SkiaUI.cpp
 )
 
 # Create executable
-add_executable(CandidateFilter ${SOURCES}  "src/candidateFilter.cpp" "src/candidateFilter.h" "src/candidateScorer.cpp" "src/candidateScorer.h")
+add_executable(CandidateFilter ${SOURCES})
 
 # Add required libraries
 find_package(CURL REQUIRED)
 find_package(pugixml CONFIG REQUIRED)
 find_package(nlohmann_json CONFIG REQUIRED)
 find_package(ZLIB REQUIRED)  # Add this line for ZLIB
-find_package(Skia REQUIRED)
+find_package(unofficial-skia CONFIG REQUIRED)
+find_package(glfw3 CONFIG REQUIRED)
 
 # Link libraries
 target_link_libraries(CandidateFilter PRIVATE 
@@ -42,4 +49,6 @@ target_link_libraries(CandidateFilter PRIVATE
     pugixml::shared pugixml::pugixml
     nlohmann_json::nlohmann_json
     ZLIB::ZLIB  # Add this line to link ZLIB
+    unofficial::skia::skia
+    glfw
 )

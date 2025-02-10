@@ -246,11 +246,35 @@ ZLIB_LIBRARY_DEBUG:FILEPATH=ZLIB_LIBRARY_DEBUG-NOTFOUND
 //Path to a library.
 ZLIB_LIBRARY_RELEASE:FILEPATH=C:/Users/danie/vcpkg/installed/x64-windows/lib/zlib.lib
 
+//The directory containing a CMake configuration file for glfw3.
+glfw3_DIR:PATH=C:/Users/danie/vcpkg/installed/x64-windows/share/glfw3
+
 //The directory containing a CMake configuration file for nlohmann_json.
 nlohmann_json_DIR:PATH=C:/Users/danie/vcpkg/installed/x64-windows/share/nlohmann_json
 
 //The directory containing a CMake configuration file for pugixml.
 pugixml_DIR:PATH=C:/Users/danie/vcpkg/installed/x64-windows/share/pugixml
+
+//The directory containing a CMake configuration file for unofficial-skia.
+unofficial-skia_DIR:PATH=C:/Users/danie/vcpkg/installed/x64-windows/share/unofficial-skia
+
+//Path to a library.
+z_vcpkg_skia_link_libs_FontSub_lib_DEBUG:FILEPATH=C:/Program Files (x86)/Windows Kits/10/Lib/10.0.22621.0/um/x64/fontsub.lib
+
+//Path to a library.
+z_vcpkg_skia_link_libs_FontSub_lib_RELEASE:FILEPATH=C:/Program Files (x86)/Windows Kits/10/Lib/10.0.22621.0/um/x64/fontsub.lib
+
+//Path to a library.
+z_vcpkg_skia_link_libs_OpenGL32_lib_DEBUG:FILEPATH=C:/Users/danie/vcpkg/installed/x64-windows/lib/OpenGL32.Lib
+
+//Path to a library.
+z_vcpkg_skia_link_libs_OpenGL32_lib_RELEASE:FILEPATH=C:/Users/danie/vcpkg/installed/x64-windows/lib/OpenGL32.Lib
+
+//Path to a library.
+z_vcpkg_skia_link_libs_Usp10_lib_DEBUG:FILEPATH=C:/Program Files (x86)/Windows Kits/10/Lib/10.0.22621.0/um/x64/USP10.Lib
+
+//Path to a library.
+z_vcpkg_skia_link_libs_Usp10_lib_RELEASE:FILEPATH=C:/Program Files (x86)/Windows Kits/10/Lib/10.0.22621.0/um/x64/USP10.Lib
 
 
 ########################
@@ -325,6 +349,12 @@ CMAKE_GENERATOR_INSTANCE:INTERNAL=
 CMAKE_GENERATOR_PLATFORM:INTERNAL=
 //Name of generator toolset.
 CMAKE_GENERATOR_TOOLSET:INTERNAL=
+//Test CMAKE_HAVE_LIBC_PTHREAD
+CMAKE_HAVE_LIBC_PTHREAD:INTERNAL=
+//Have library pthreads
+CMAKE_HAVE_PTHREADS_CREATE:INTERNAL=
+//Have library pthread
+CMAKE_HAVE_PTHREAD_CREATE:INTERNAL=
 //Source directory with the top level CMakeLists.txt file for this
 // project
 CMAKE_HOME_DIRECTORY:INTERNAL=C:/Users/danie/Documents/Daniel/Trabajo/EightBit/CandidateFilter
@@ -399,6 +429,8 @@ CURL_LIBRARY_DEBUG-ADVANCED:INTERNAL=1
 CURL_LIBRARY_RELEASE-ADVANCED:INTERNAL=1
 //Details about finding CURL
 FIND_PACKAGE_MESSAGE_DETAILS_CURL:INTERNAL=[C:/Users/danie/vcpkg/installed/x64-windows/share/curl/CURLConfig.cmake][c ][v8.12.0-DEV()]
+//Details about finding Threads
+FIND_PACKAGE_MESSAGE_DETAILS_Threads:INTERNAL=[TRUE][v()]
 //Details about finding ZLIB
 FIND_PACKAGE_MESSAGE_DETAILS_ZLIB:INTERNAL=[C:/Users/danie/vcpkg/installed/x64-windows/lib/zlib.lib][C:/Users/danie/vcpkg/installed/x64-windows/include][c ][v1.3.1()]
 //Details about finding nlohmann_json
@@ -413,4 +445,16 @@ ZLIB_INCLUDE_DIR-ADVANCED:INTERNAL=1
 ZLIB_LIBRARY_DEBUG-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: ZLIB_LIBRARY_RELEASE
 ZLIB_LIBRARY_RELEASE-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: z_vcpkg_skia_link_libs_FontSub_lib_DEBUG
+z_vcpkg_skia_link_libs_FontSub_lib_DEBUG-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: z_vcpkg_skia_link_libs_FontSub_lib_RELEASE
+z_vcpkg_skia_link_libs_FontSub_lib_RELEASE-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: z_vcpkg_skia_link_libs_OpenGL32_lib_DEBUG
+z_vcpkg_skia_link_libs_OpenGL32_lib_DEBUG-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: z_vcpkg_skia_link_libs_OpenGL32_lib_RELEASE
+z_vcpkg_skia_link_libs_OpenGL32_lib_RELEASE-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: z_vcpkg_skia_link_libs_Usp10_lib_DEBUG
+z_vcpkg_skia_link_libs_Usp10_lib_DEBUG-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: z_vcpkg_skia_link_libs_Usp10_lib_RELEASE
+z_vcpkg_skia_link_libs_Usp10_lib_RELEASE-ADVANCED:INTERNAL=1
 

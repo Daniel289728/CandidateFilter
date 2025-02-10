@@ -32,4 +32,3 @@ double CandidateScorer::calculateScore(const Candidate& candidate) {
 
     return score;
 }
-};
