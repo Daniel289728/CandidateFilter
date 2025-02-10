@@ -11,6 +11,7 @@ public:
     double GPA;
     std::vector<std::string> skills;
     std::string hobby;
+    double score;
 
     Candidate(const std::string& _name = "", const std::string& _university = "", double _gpa = 0.0,
         const std::vector<std::string>& _skills = {}, const std::string& _hobby = "")

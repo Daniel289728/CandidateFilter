@@ -234,6 +234,9 @@ Project_IS_TOP_LEVEL:STATIC=ON
 //Value Computed by CMake
 Project_SOURCE_DIR:STATIC=C:/Users/danie/Documents/Daniel/Trabajo/EightBit/CandidateFilter
 
+//The directory containing a CMake configuration file for Skia.
+Skia_DIR:PATH=Skia_DIR-NOTFOUND
+
 //Path to a file.
 ZLIB_INCLUDE_DIR:PATH=C:/Users/danie/vcpkg/installed/x64-windows/include
 

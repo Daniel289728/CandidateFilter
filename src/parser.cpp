@@ -90,7 +90,7 @@ std::vector<Candidate> Parser::processDownloadedData(const std::vector<std::stri
 
         // Assign university name to each candidate (if necessary)
         for (auto& candidate : candidates) {
-            candidate.university = universityName;  // Assuming 'university' is a field in Candidate class
+            candidate.university = universityName;
         }
 
         allCandidates.insert(allCandidates.end(), candidates.begin(), candidates.end());

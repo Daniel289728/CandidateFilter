@@ -22,16 +22,19 @@ set(SOURCES
     src/downloader.cpp
     src/parser.cpp
     src/candidate.cpp
+    src/candidateFilter.cpp
+    src/candidateScorer.cpp
 )
 
 # Create executable
-add_executable(CandidateFilter ${SOURCES}  "src/candidateFilter.cpp" "src/candidateFilter.h")
+add_executable(CandidateFilter ${SOURCES}  "src/candidateFilter.cpp" "src/candidateFilter.h" "src/candidateScorer.cpp" "src/candidateScorer.h")
 
 # Add required libraries
 find_package(CURL REQUIRED)
 find_package(pugixml CONFIG REQUIRED)
 find_package(nlohmann_json CONFIG REQUIRED)
 find_package(ZLIB REQUIRED)  # Add this line for ZLIB
+find_package(Skia REQUIRED)
 
 # Link libraries
 target_link_libraries(CandidateFilter PRIVATE 
