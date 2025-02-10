@@ -1,17 +1,17 @@
 #include <iostream>
 #include <cstdlib>  // For std::setenv (or _putenv in Windows)
 #include "downloader.h"
+#include "parser.h"
 
 int main(void) {
-
     Downloader downloader;
+    Parser parser;
 
-    if (downloader.downloadAllData()) {
-        std::cout << "All candidate data downloaded successfully!" << std::endl;
-    }
-    else {
-        std::cout << "Failed to download candidate data." << std::endl;
-    }
+    // Get the list of downloaded files
+    std::vector<std::string> data = downloader.downloadAllData();
+
+    // Process the downloaded files (pass by reference)
+    parser.processDownloadedData(data);
 
     return 0;
 }

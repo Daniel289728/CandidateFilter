@@ -10,12 +10,13 @@ public:
     ~Downloader();
 
     // Add the declaration for the new method
-    std::string getDataFolderPath();
-
-    bool downloadData(const std::string& url, const std::string& filePath);
-    bool downloadAllData();
-    bool Downloader::ensureDataFolderExists();
+    
+    std::vector<std::string> Downloader::downloadAllData();
 private:
+    std::string getDataFolderPath();
+    bool Downloader::ensureDataFolderExists();
+    std::string getFileExtension(const std::string& url);
+    bool downloadData(const std::string& url, const std::string& filePath);
     bool saveDataToFile(const std::string& data, const std::string& filename);
     // List of URLs for the universities
     const std::vector<std::string> urls = {

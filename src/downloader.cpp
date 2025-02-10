@@ -97,30 +97,49 @@ std::string Downloader::getDataFolderPath() {
 }
 
 // Download data from all URLs and save to files
-bool Downloader::downloadAllData() {
+std::vector<std::string> Downloader::downloadAllData() {
+    std::vector<std::string> downloadedFiles; // Vector to hold downloaded file paths
     bool success = true;
 
     // Ensure the data folder exists before downloading
     if (!ensureDataFolderExists()) {
         std::cerr << "Failed to ensure data folder exists." << std::endl;
-        return false;
+        return downloadedFiles; // Return empty vector on failure
     }
 
     // Get the data folder path dynamically
     std::string dataFolderPath = getDataFolderPath();
     std::cout << "Data folder path: " << dataFolderPath << std::endl;  // Debug line
+
     for (size_t i = 0; i < urls.size(); ++i) {
-        // Construct the full path to the file in the 'data' folder
-        std::string filename = dataFolderPath + "/university_" + std::to_string(i + 1) + ".data"; // Using dynamic path
+        // Construct the filename dynamically, including correct extension
+        std::string filename = dataFolderPath + "/university_" + std::to_string(i + 1) + getFileExtension(urls[i]);
         std::cout << "Downloading data to: " << filename << std::endl;  // Debug line
 
-        if (!downloadData(urls[i], filename)) {
+        if (downloadData(urls[i], filename)) {
+            downloadedFiles.push_back(filename);  // Add successful file path to vector
+        }
+        else {
             std::cerr << "Failed to download data from " << urls[i] << std::endl;
             success = false;
         }
     }
-    return success;
+
+    // Optionally, if you want to handle errors, you could return an empty vector on failure
+    return success ? downloadedFiles : std::vector<std::string>();
 }
+
+std::string Downloader::getFileExtension(const std::string& url) {
+    if (url.find(".xml") != std::string::npos) {
+        return ".xml";
+    }
+    else if (url.find(".json") != std::string::npos) {
+        return ".json";
+    }
+    return ".data";  // Default extension
+}
+
+
 
 // Save data to a file (helper function)
 bool Downloader::saveDataToFile(const std::string& data, const std::string& filename) {
