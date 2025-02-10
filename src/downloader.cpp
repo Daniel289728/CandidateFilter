@@ -35,6 +35,7 @@ bool Downloader::downloadData(const std::string& url, const std::string& filePat
     FILE* file = fopen(filePath.c_str(), "wb");
     if (!file) {
         std::cerr << "Failed to open file for writing: " << filePath << std::endl;
+        perror("Error");
         return false;
     }
 
@@ -42,6 +43,10 @@ bool Downloader::downloadData(const std::string& url, const std::string& filePat
     curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, write_callback);
     curl_easy_setopt(curl, CURLOPT_WRITEDATA, &response_data);
     curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);
+
+    // Disable SSL certificate verification
+    curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, 0L);
+    curl_easy_setopt(curl, CURLOPT_SSL_VERIFYHOST, 0L);
 
     CURLcode res = curl_easy_perform(curl);
 
@@ -52,9 +57,34 @@ bool Downloader::downloadData(const std::string& url, const std::string& filePat
         return false;
     }
 
-    fwrite(response_data.c_str(), 1, response_data.size(), file);
+    // Write the received data to the file
+    size_t written = fwrite(response_data.c_str(), 1, response_data.size(), file);
+    if (written != response_data.size()) {
+        std::cerr << "Error writing to file: " << filePath << std::endl;
+        fclose(file);
+        curl_easy_cleanup(curl);
+        return false;
+    }
+
     fclose(file);
     curl_easy_cleanup(curl);
+
+    return true;
+}
+
+// Ensure the data folder exists before downloading
+bool Downloader::ensureDataFolderExists() {
+    std::string dataFolderPath = getDataFolderPath(); // Get the dynamic path to data folder
+    std::filesystem::path dataFolder(dataFolderPath);
+
+    // Check if the directory exists, create it if it doesn't
+    if (!std::filesystem::exists(dataFolder)) {
+        std::cout << "Data folder does not exist. Creating directory: " << dataFolderPath << std::endl;
+        std::filesystem::create_directory(dataFolder);
+    }
+    else {
+        std::cout << "Data folder already exists: " << dataFolderPath << std::endl;
+    }
 
     return true;
 }
@@ -62,7 +92,7 @@ bool Downloader::downloadData(const std::string& url, const std::string& filePat
 // Get the path to the 'data' folder relative to the executable
 std::string Downloader::getDataFolderPath() {
     std::filesystem::path exePath = std::filesystem::current_path(); // Get the current working directory (where the executable is)
-    std::filesystem::path dataFolderPath = exePath.parent_path().parent_path() / "data"; // Go up two levels and find the "data" folder
+    std::filesystem::path dataFolderPath = exePath.parent_path() / "data"; // Go up one level and find the "data" folder
     return dataFolderPath.string(); // Return the path as a string
 }
 
@@ -70,12 +100,19 @@ std::string Downloader::getDataFolderPath() {
 bool Downloader::downloadAllData() {
     bool success = true;
 
+    // Ensure the data folder exists before downloading
+    if (!ensureDataFolderExists()) {
+        std::cerr << "Failed to ensure data folder exists." << std::endl;
+        return false;
+    }
+
     // Get the data folder path dynamically
     std::string dataFolderPath = getDataFolderPath();
-
+    std::cout << "Data folder path: " << dataFolderPath << std::endl;  // Debug line
     for (size_t i = 0; i < urls.size(); ++i) {
         // Construct the full path to the file in the 'data' folder
         std::string filename = dataFolderPath + "/university_" + std::to_string(i + 1) + ".data"; // Using dynamic path
+        std::cout << "Downloading data to: " << filename << std::endl;  // Debug line
 
         if (!downloadData(urls[i], filename)) {
             std::cerr << "Failed to download data from " << urls[i] << std::endl;
