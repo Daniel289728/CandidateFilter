@@ -11,6 +11,10 @@
 #include <QTextStream>
 #include "Logger.h"
 #include <stdexcept>
+#include "Downloader.h"
+#include "Parser.h"
+#include "candidatescorer.h"
+#include "candidatefilter.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent),

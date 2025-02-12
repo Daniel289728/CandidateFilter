@@ -1,30 +1,33 @@
 #include "downloader.h"
 #include <curl/curl.h>
 #include <fstream>
-#include <sstream>
 #include <filesystem>
+#include "logger.h"
+
 Downloader::Downloader() {
-    curl_global_init(CURL_GLOBAL_DEFAULT);
+    curl_global_init(CURL_GLOBAL_DEFAULT); // Initialize global cURL environment
     Logger::getInstance().log(Logger::LOG_INFO, 
         QString("Downloader initialized with cURL"), 
         QString("Downloader"));
 }
 
 Downloader::~Downloader() {
-    curl_global_cleanup();
+    curl_global_cleanup(); // Clean up global cURL environment
     Logger::getInstance().log(Logger::LOG_INFO, 
         QString("Downloader cleanup completed"), 
         QString("Downloader"));
 }
 
+// cURL callback to write the downloaded data into a string
 size_t write_callback(void* contents, size_t size, size_t nmemb, void* userp) {
     size_t total_size = size * nmemb;
     std::string* data = static_cast<std::string*>(userp);
-    data->append(static_cast<char*>(contents), total_size);
+    data->append(static_cast<char*>(contents), total_size); // Append data to the string
     return total_size;
 }
 
-bool Downloader::downloadData(const std::string& url, const std::string& filePath) {
+// Download data from URL and save it to the given file path
+bool Downloader::downloadData(const std::string& url, const std::string& filePath) const {
     CURL* curl = curl_easy_init();
     if (!curl) {
         Logger::getInstance().log(Logger::LOG_ERROR, 
@@ -39,20 +42,20 @@ bool Downloader::downloadData(const std::string& url, const std::string& filePat
         Logger::getInstance().log(Logger::LOG_ERROR,
             QString("Failed to open file for writing: %1").arg(QString::fromStdString(filePath)),
             QString("Downloader"));
+        curl_easy_cleanup(curl);
         return false;
     }
 
     curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
-    curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, write_callback);
-    curl_easy_setopt(curl, CURLOPT_WRITEDATA, &response_data);
-    curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);
+    curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, write_callback); // Set the write callback
+    curl_easy_setopt(curl, CURLOPT_WRITEDATA, &response_data); // Set the data string
+    curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L); // Follow redirects
 
-    // Disable SSL certificate verification
+    // Disable SSL certificate verification (for simplicity, though it should be handled securely)
     curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, 0L);
     curl_easy_setopt(curl, CURLOPT_SSL_VERIFYHOST, 0L);
 
     CURLcode res = curl_easy_perform(curl);
-
     if (res != CURLE_OK) {
         Logger::getInstance().log(Logger::LOG_ERROR,
             QString("Failed to download data from %1. Error: %2")
@@ -74,8 +77,8 @@ bool Downloader::downloadData(const std::string& url, const std::string& filePat
         return false;
     }
 
-    fclose(file);
-    curl_easy_cleanup(curl);
+    fclose(file); // Close the file
+    curl_easy_cleanup(curl); // Clean up cURL resources
 
     Logger::getInstance().log(Logger::LOG_INFO,
         QString("Successfully downloaded data from %1 to %2")
@@ -87,11 +90,11 @@ bool Downloader::downloadData(const std::string& url, const std::string& filePat
 }
 
 // Ensure the data folder exists before downloading
-bool Downloader::ensureDataFolderExists() {
-    std::string dataFolderPath = getDataFolderPath(); // Get the dynamic path to data folder
+bool Downloader::ensureDataFolderExists() const {
+    std::string dataFolderPath = getDataFolderPath(); // Get the dynamic path to the data folder
     std::filesystem::path dataFolder(dataFolderPath);
 
-    // Check if the directory exists, create it if it doesn't
+    // If the folder doesn't exist, create it
     if (!std::filesystem::exists(dataFolder)) {
         Logger::getInstance().log(Logger::LOG_INFO,
             QString("Data folder does not exist. Creating directory: %1")
@@ -116,34 +119,26 @@ bool Downloader::ensureDataFolderExists() {
     return true;
 }
 
-// Get the path to the 'data' folder relative to the executable
-std::string Downloader::getDataFolderPath() {
-    std::filesystem::path exePath = std::filesystem::current_path(); // Get the current working directory (where the executable is)
-    std::filesystem::path dataFolderPath = exePath.parent_path() / "data"; // Go up one level and find the "data" folder
-    return dataFolderPath.string(); // Return the path as a string
+// Get the path to the data folder relative to the executable
+std::string Downloader::getDataFolderPath() const {
+    std::filesystem::path exePath = std::filesystem::current_path(); // Get the current working directory
+    std::filesystem::path dataFolderPath = exePath.parent_path() / "data"; // Set relative path to "data" folder
+    return dataFolderPath.string();
 }
 
-// Download data from all URLs and save to files
+// Download data from all predefined URLs and save to files
 std::vector<std::string> Downloader::downloadAllData() {
-    std::vector<std::string> downloadedFiles; // Vector to hold downloaded file paths
-    bool success = true;
-
-    // Ensure the data folder exists before downloading
-    if (!ensureDataFolderExists()) {
-        Logger::getInstance().log(Logger::LOG_ERROR,
-            QString("Failed to ensure data folder exists"),
-            QString("Downloader"));
+    std::vector<std::string> downloadedFiles;
+    if (!ensureDataFolderExists()) { // Ensure the data folder exists
         return downloadedFiles;
     }
 
-    // Get the data folder path dynamically
-    std::string dataFolderPath = getDataFolderPath();
+    std::string dataFolderPath = getDataFolderPath(); // Get the path to the data folder
     Logger::getInstance().log(Logger::LOG_INFO,
         QString("Using data folder path: %1")
             .arg(QString::fromStdString(dataFolderPath)),
         QString("Downloader"));
 
-    // Hardcoded university names based on known URLs
     std::vector<std::string> universityNames = {
         "Polytechnic-University-of-Bucharest",
         "University-of-Florida",
@@ -151,6 +146,7 @@ std::vector<std::string> Downloader::downloadAllData() {
         "University-of-São-Paulo"
     };
 
+    // Iterate over URLs to download data
     for (size_t i = 0; i < urls.size(); ++i) {
         if (i >= universityNames.size()) {
             Logger::getInstance().log(Logger::LOG_ERROR,
@@ -160,37 +156,22 @@ std::vector<std::string> Downloader::downloadAllData() {
         }
 
         std::string filename = dataFolderPath + "/" + universityNames[i] + getFileExtension(urls[i]);
-        Logger::getInstance().log(Logger::LOG_INFO,
-            QString("Attempting to download data to: %1")
-                .arg(QString::fromStdString(filename)),
-            QString("Downloader"));
-
         if (downloadData(urls[i], filename)) {
-            downloadedFiles.push_back(filename);  // Add successful file path to vector
+            downloadedFiles.push_back(filename);
         }
         else {
             Logger::getInstance().log(Logger::LOG_ERROR,
                 QString("Failed to download data from %1")
                     .arg(QString::fromStdString(urls[i])),
                 QString("Downloader"));
-            success = false;
         }
     }
 
-    if (success) {
-        Logger::getInstance().log(Logger::LOG_INFO,
-            QString("Successfully downloaded %1 files")
-                .arg(downloadedFiles.size()),
-            QString("Downloader"));
-    }
-
-    return success ? downloadedFiles : std::vector<std::string>();
+    return downloadedFiles;
 }
 
-
-
-// Save data to a file (helper function)
-bool Downloader::saveDataToFile(const std::string& data, const std::string& filename) {
+// Save data to a file
+bool Downloader::saveDataToFile(const std::string& data, const std::string& filename) const {
     std::ofstream outFile(filename);
     if (!outFile.is_open()) {
         Logger::getInstance().log(Logger::LOG_ERROR,
@@ -199,8 +180,8 @@ bool Downloader::saveDataToFile(const std::string& data, const std::string& file
             QString("Downloader"));
         return false;
     }
-    outFile << data;
-    outFile.close();
+    outFile << data; // Write data to file
+    outFile.close(); // Close file
 
     Logger::getInstance().log(Logger::LOG_INFO,
         QString("Successfully saved data to file: %1")
@@ -209,12 +190,13 @@ bool Downloader::saveDataToFile(const std::string& data, const std::string& file
     return true;
 }
 
-std::string Downloader::getFileExtension(const std::string& url) {
+// Get the file extension based on URL
+std::string Downloader::getFileExtension(const std::string& url) const {
     if (url.find(".xml") != std::string::npos) {
         return ".xml";
     }
     else if (url.find(".json") != std::string::npos) {
         return ".json";
     }
-    return ".data";  // Default extension
+    return ".data"; // Default extension if not found
 }

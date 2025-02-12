@@ -14,10 +14,6 @@
 #include <QStackedWidget>
 #include <QTextStream>
 #include "Candidate.h"
-#include "Downloader.h"
-#include "Parser.h"
-#include "candidatescorer.h"
-#include "candidatefilter.h"
 
 class MainWindow : public QMainWindow {
     Q_OBJECT

@@ -3,23 +3,24 @@
 
 #include <string>
 #include <vector>
-#include "logger.h"
 
 class Downloader {
 public:
-    Downloader();
-    ~Downloader();
+    Downloader(); // Constructor initializes cURL and logging
+    ~Downloader(); // Destructor cleans up cURL resources
 
-    // Add the declaration for the new method
-
+    // Download data from all predefined URLs and return file paths of downloaded data
     std::vector<std::string> downloadAllData();
+
 private:
-    std::string getDataFolderPath();
-    bool ensureDataFolderExists();
-    std::string getFileExtension(const std::string& url);
-    bool downloadData(const std::string& url, const std::string& filePath);
-    bool saveDataToFile(const std::string& data, const std::string& filename);
-    // List of URLs for the universities
+    // Helper functions for file and directory management
+    std::string getDataFolderPath() const; // Get path to data folder
+    bool ensureDataFolderExists() const; // Ensure that the data folder exists
+    bool downloadData(const std::string& url, const std::string& filePath) const; // Download data from URL
+    bool saveDataToFile(const std::string& data, const std::string& filename) const; // Save data to file
+    std::string getFileExtension(const std::string& url) const; // Extract file extension based on URL
+
+    // List of URLs for universities to download data from
     const std::vector<std::string> urls = {
         "https://chromium-case-study.s3.us-east-1.amazonaws.com/candidate+feeds/Polytechnic-University-of-Bucharest.xml",
         "https://chromium-case-study.s3.us-east-1.amazonaws.com/candidate+feeds/University-of-S%C3%A3o-Paulo.xml",
