@@ -91,3 +91,161 @@
 [2025-02-12 15:00:25] [INFO] Parser: Total candidates processed: 255
 [2025-02-12 15:00:25] [INFO] MainWindow: Successfully loaded 255 candidates
 [2025-02-12 15:00:25] [INFO] Downloader: Downloader cleanup completed
+[2025-02-12 15:13:39] [INFO] Downloader: Downloader initialized with cURL
+[2025-02-12 15:13:39] [INFO] Downloader: Data folder already exists: C:\Users\danie\Documents\Daniel\Trabajo\EightBit\CandidateFIlterGui\CandidateFIlter\build\data
+[2025-02-12 15:13:39] [INFO] Downloader: Using data folder path: C:\Users\danie\Documents\Daniel\Trabajo\EightBit\CandidateFIlterGui\CandidateFIlter\build\data
+[2025-02-12 15:13:39] [INFO] Downloader: Successfully downloaded data from https://chromium-case-study.s3.us-east-1.amazonaws.com/candidate+feeds/Polytechnic-University-of-Bucharest.xml to C:\Users\danie\Documents\Daniel\Trabajo\EightBit\CandidateFIlterGui\CandidateFIlter\build\data/Polytechnic-University-of-Bucharest.xml
+[2025-02-12 15:13:39] [INFO] Downloader: Successfully downloaded data from https://chromium-case-study.s3.us-east-1.amazonaws.com/candidate+feeds/University-of-S%C3%A3o-Paulo.xml to C:\Users\danie\Documents\Daniel\Trabajo\EightBit\CandidateFIlterGui\CandidateFIlter\build\data/University-of-Florida.xml
+[2025-02-12 15:13:40] [INFO] Downloader: Successfully downloaded data from https://chromium-case-study.s3.us-east-1.amazonaws.com/candidate+feeds/University-of-Florida.json to C:\Users\danie\Documents\Daniel\Trabajo\EightBit\CandidateFIlterGui\CandidateFIlter\build\data/University-of-Havana.json
+[2025-02-12 15:13:40] [INFO] Downloader: Successfully downloaded data from https://chromium-case-study.s3.us-east-1.amazonaws.com/candidate+feeds/University-of-Havana.json to C:\Users\danie\Documents\Daniel\Trabajo\EightBit\CandidateFIlterGui\CandidateFIlter\build\data/University-of-São-Paulo.json
+[2025-02-12 15:13:40] [INFO] Parser: Processing file: C:\Users\danie\Documents\Daniel\Trabajo\EightBit\CandidateFIlterGui\CandidateFIlter\build\data/Polytechnic-University-of-Bucharest.xml
+[2025-02-12 15:13:40] [INFO] Parser: Extracted university name: Polytechnic University Of Bucharest
+[2025-02-12 15:13:40] [INFO] Parser-XML: Successfully parsed 104 candidates from XML file: C:\Users\danie\Documents\Daniel\Trabajo\EightBit\CandidateFIlterGui\CandidateFIlter\build\data/Polytechnic-University-of-Bucharest.xml
+[2025-02-12 15:13:40] [INFO] Parser: Processing file: C:\Users\danie\Documents\Daniel\Trabajo\EightBit\CandidateFIlterGui\CandidateFIlter\build\data/University-of-Florida.xml
+[2025-02-12 15:13:40] [INFO] Parser: Extracted university name: University Of Florida
+[2025-02-12 15:13:40] [ERROR] Parser-XML: Failed to load XML file: C:\Users\danie\Documents\Daniel\Trabajo\EightBit\CandidateFIlterGui\CandidateFIlter\build\data/University-of-Florida.xml. Error: Start-end tags mismatch
+[2025-02-12 15:13:40] [INFO] Parser: Processing file: C:\Users\danie\Documents\Daniel\Trabajo\EightBit\CandidateFIlterGui\CandidateFIlter\build\data/University-of-Havana.json
+[2025-02-12 15:13:40] [INFO] Parser: Extracted university name: University Of Havana
+[2025-02-12 15:13:40] [WARNING] Parser-JSON: Missing name for candidate 3 in file C:\Users\danie\Documents\Daniel\Trabajo\EightBit\CandidateFIlterGui\CandidateFIlter\build\data/University-of-Havana.json
+[2025-02-12 15:13:40] [WARNING] Parser-JSON: Missing name for candidate 5 in file C:\Users\danie\Documents\Daniel\Trabajo\EightBit\CandidateFIlterGui\CandidateFIlter\build\data/University-of-Havana.json
+[2025-02-12 15:13:40] [WARNING] Parser-JSON: Missing name for candidate 8 in file C:\Users\danie\Documents\Daniel\Trabajo\EightBit\CandidateFIlterGui\CandidateFIlter\build\data/University-of-Havana.json
+[2025-02-12 15:13:40] [WARNING] Parser-JSON: Missing name for candidate 9 in file C:\Users\danie\Documents\Daniel\Trabajo\EightBit\CandidateFIlterGui\CandidateFIlter\build\data/University-of-Havana.json
+[2025-02-12 15:13:40] [WARNING] Parser-JSON: Missing name for candidate 12 in file C:\Users\danie\Documents\Daniel\Trabajo\EightBit\CandidateFIlterGui\CandidateFIlter\build\data/University-of-Havana.json
+[2025-02-12 15:13:40] [WARNING] Parser-JSON: Missing name for candidate 13 in file C:\Users\danie\Documents\Daniel\Trabajo\EightBit\CandidateFIlterGui\CandidateFIlter\build\data/University-of-Havana.json
+[2025-02-12 15:13:40] [WARNING] Parser-JSON: Missing name for candidate 14 in file C:\Users\danie\Documents\Daniel\Trabajo\EightBit\CandidateFIlterGui\CandidateFIlter\build\data/University-of-Havana.json
+[2025-02-12 15:13:40] [WARNING] Parser-JSON: Missing name for candidate 17 in file C:\Users\danie\Documents\Daniel\Trabajo\EightBit\CandidateFIlterGui\CandidateFIlter\build\data/University-of-Havana.json
+[2025-02-12 15:13:40] [WARNING] Parser-JSON: Missing name for candidate 19 in file C:\Users\danie\Documents\Daniel\Trabajo\EightBit\CandidateFIlterGui\CandidateFIlter\build\data/University-of-Havana.json
+[2025-02-12 15:13:40] [INFO] Parser-JSON: Successfully parsed 19 candidates from JSON file: C:\Users\danie\Documents\Daniel\Trabajo\EightBit\CandidateFIlterGui\CandidateFIlter\build\data/University-of-Havana.json
+[2025-02-12 15:13:40] [INFO] Parser: Processing file: C:\Users\danie\Documents\Daniel\Trabajo\EightBit\CandidateFIlterGui\CandidateFIlter\build\data/University-of-São-Paulo.json
+[2025-02-12 15:13:40] [INFO] Parser: Extracted university name: University Of Sao Paulo
+[2025-02-12 15:13:40] [INFO] Parser-JSON: Successfully parsed 132 candidates from JSON file: C:\Users\danie\Documents\Daniel\Trabajo\EightBit\CandidateFIlterGui\CandidateFIlter\build\data/University-of-São-Paulo.json
+[2025-02-12 15:13:40] [INFO] Parser: Total candidates processed: 255
+[2025-02-12 15:13:40] [INFO] MainWindow: Successfully loaded 255 candidates
+[2025-02-12 15:13:40] [INFO] Downloader: Downloader cleanup completed
+[2025-02-12 15:14:21] [INFO] Downloader: Downloader initialized with cURL
+[2025-02-12 15:14:21] [INFO] Downloader: Data folder already exists: C:\Users\danie\Documents\Daniel\Trabajo\EightBit\CandidateFIlterGui\CandidateFIlter\build\data
+[2025-02-12 15:14:21] [INFO] Downloader: Using data folder path: C:\Users\danie\Documents\Daniel\Trabajo\EightBit\CandidateFIlterGui\CandidateFIlter\build\data
+[2025-02-12 15:14:21] [INFO] Downloader: Successfully downloaded data from https://chromium-case-study.s3.us-east-1.amazonaws.com/candidate+feeds/Polytechnic-University-of-Bucharest.xml to C:\Users\danie\Documents\Daniel\Trabajo\EightBit\CandidateFIlterGui\CandidateFIlter\build\data/Polytechnic-University-of-Bucharest.xml
+[2025-02-12 15:14:21] [INFO] Downloader: Successfully downloaded data from https://chromium-case-study.s3.us-east-1.amazonaws.com/candidate+feeds/University-of-S%C3%A3o-Paulo.xml to C:\Users\danie\Documents\Daniel\Trabajo\EightBit\CandidateFIlterGui\CandidateFIlter\build\data/University-of-Florida.xml
+[2025-02-12 15:14:22] [INFO] Downloader: Successfully downloaded data from https://chromium-case-study.s3.us-east-1.amazonaws.com/candidate+feeds/University-of-Florida.json to C:\Users\danie\Documents\Daniel\Trabajo\EightBit\CandidateFIlterGui\CandidateFIlter\build\data/University-of-Havana.json
+[2025-02-12 15:14:22] [INFO] Downloader: Successfully downloaded data from https://chromium-case-study.s3.us-east-1.amazonaws.com/candidate+feeds/University-of-Havana.json to C:\Users\danie\Documents\Daniel\Trabajo\EightBit\CandidateFIlterGui\CandidateFIlter\build\data/University-of-São-Paulo.json
+[2025-02-12 15:14:22] [INFO] Parser: Processing file: C:\Users\danie\Documents\Daniel\Trabajo\EightBit\CandidateFIlterGui\CandidateFIlter\build\data/Polytechnic-University-of-Bucharest.xml
+[2025-02-12 15:14:22] [INFO] Parser: Extracted university name: Polytechnic University Of Bucharest
+[2025-02-12 15:14:22] [INFO] Parser-XML: Successfully parsed 104 candidates from XML file: C:\Users\danie\Documents\Daniel\Trabajo\EightBit\CandidateFIlterGui\CandidateFIlter\build\data/Polytechnic-University-of-Bucharest.xml
+[2025-02-12 15:14:22] [INFO] Parser: Processing file: C:\Users\danie\Documents\Daniel\Trabajo\EightBit\CandidateFIlterGui\CandidateFIlter\build\data/University-of-Florida.xml
+[2025-02-12 15:14:22] [INFO] Parser: Extracted university name: University Of Florida
+[2025-02-12 15:14:22] [ERROR] Parser-XML: Failed to load XML file: C:\Users\danie\Documents\Daniel\Trabajo\EightBit\CandidateFIlterGui\CandidateFIlter\build\data/University-of-Florida.xml. Error: Start-end tags mismatch
+[2025-02-12 15:14:22] [INFO] Parser: Processing file: C:\Users\danie\Documents\Daniel\Trabajo\EightBit\CandidateFIlterGui\CandidateFIlter\build\data/University-of-Havana.json
+[2025-02-12 15:14:22] [INFO] Parser: Extracted university name: University Of Havana
+[2025-02-12 15:14:22] [WARNING] Parser-JSON: Missing name for candidate 3 in file C:\Users\danie\Documents\Daniel\Trabajo\EightBit\CandidateFIlterGui\CandidateFIlter\build\data/University-of-Havana.json
+[2025-02-12 15:14:22] [WARNING] Parser-JSON: Missing name for candidate 5 in file C:\Users\danie\Documents\Daniel\Trabajo\EightBit\CandidateFIlterGui\CandidateFIlter\build\data/University-of-Havana.json
+[2025-02-12 15:14:22] [WARNING] Parser-JSON: Missing name for candidate 8 in file C:\Users\danie\Documents\Daniel\Trabajo\EightBit\CandidateFIlterGui\CandidateFIlter\build\data/University-of-Havana.json
+[2025-02-12 15:14:22] [WARNING] Parser-JSON: Missing name for candidate 9 in file C:\Users\danie\Documents\Daniel\Trabajo\EightBit\CandidateFIlterGui\CandidateFIlter\build\data/University-of-Havana.json
+[2025-02-12 15:14:22] [WARNING] Parser-JSON: Missing name for candidate 12 in file C:\Users\danie\Documents\Daniel\Trabajo\EightBit\CandidateFIlterGui\CandidateFIlter\build\data/University-of-Havana.json
+[2025-02-12 15:14:22] [WARNING] Parser-JSON: Missing name for candidate 13 in file C:\Users\danie\Documents\Daniel\Trabajo\EightBit\CandidateFIlterGui\CandidateFIlter\build\data/University-of-Havana.json
+[2025-02-12 15:14:22] [WARNING] Parser-JSON: Missing name for candidate 14 in file C:\Users\danie\Documents\Daniel\Trabajo\EightBit\CandidateFIlterGui\CandidateFIlter\build\data/University-of-Havana.json
+[2025-02-12 15:14:22] [WARNING] Parser-JSON: Missing name for candidate 17 in file C:\Users\danie\Documents\Daniel\Trabajo\EightBit\CandidateFIlterGui\CandidateFIlter\build\data/University-of-Havana.json
+[2025-02-12 15:14:22] [WARNING] Parser-JSON: Missing name for candidate 19 in file C:\Users\danie\Documents\Daniel\Trabajo\EightBit\CandidateFIlterGui\CandidateFIlter\build\data/University-of-Havana.json
+[2025-02-12 15:14:22] [INFO] Parser-JSON: Successfully parsed 19 candidates from JSON file: C:\Users\danie\Documents\Daniel\Trabajo\EightBit\CandidateFIlterGui\CandidateFIlter\build\data/University-of-Havana.json
+[2025-02-12 15:14:22] [INFO] Parser: Processing file: C:\Users\danie\Documents\Daniel\Trabajo\EightBit\CandidateFIlterGui\CandidateFIlter\build\data/University-of-São-Paulo.json
+[2025-02-12 15:14:22] [INFO] Parser: Extracted university name: University Of Sao Paulo
+[2025-02-12 15:14:22] [INFO] Parser-JSON: Successfully parsed 132 candidates from JSON file: C:\Users\danie\Documents\Daniel\Trabajo\EightBit\CandidateFIlterGui\CandidateFIlter\build\data/University-of-São-Paulo.json
+[2025-02-12 15:14:22] [INFO] Parser: Total candidates processed: 255
+[2025-02-12 15:14:22] [INFO] MainWindow: Successfully loaded 255 candidates
+[2025-02-12 15:14:22] [INFO] Downloader: Downloader cleanup completed
+[2025-02-12 15:14:39] [INFO] FileOperation: Successfully saved 1 candidates to file
+[2025-02-12 15:14:44] [INFO] FileOperation: Successfully loaded 1 candidates from file
+[2025-02-12 15:16:07] [INFO] Downloader: Downloader initialized with cURL
+[2025-02-12 15:16:07] [INFO] Downloader: Data folder already exists: C:\Users\danie\Documents\Daniel\Trabajo\EightBit\CandidateFIlterGui\CandidateFIlter\build\data
+[2025-02-12 15:16:07] [INFO] Downloader: Using data folder path: C:\Users\danie\Documents\Daniel\Trabajo\EightBit\CandidateFIlterGui\CandidateFIlter\build\data
+[2025-02-12 15:16:07] [INFO] Downloader: Successfully downloaded data from https://chromium-case-study.s3.us-east-1.amazonaws.com/candidate+feeds/Polytechnic-University-of-Bucharest.xml to C:\Users\danie\Documents\Daniel\Trabajo\EightBit\CandidateFIlterGui\CandidateFIlter\build\data/Polytechnic-University-of-Bucharest.xml
+[2025-02-12 15:16:07] [INFO] Downloader: Successfully downloaded data from https://chromium-case-study.s3.us-east-1.amazonaws.com/candidate+feeds/University-of-S%C3%A3o-Paulo.xml to C:\Users\danie\Documents\Daniel\Trabajo\EightBit\CandidateFIlterGui\CandidateFIlter\build\data/University-of-Florida.xml
+[2025-02-12 15:16:08] [INFO] Downloader: Successfully downloaded data from https://chromium-case-study.s3.us-east-1.amazonaws.com/candidate+feeds/University-of-Florida.json to C:\Users\danie\Documents\Daniel\Trabajo\EightBit\CandidateFIlterGui\CandidateFIlter\build\data/University-of-Havana.json
+[2025-02-12 15:16:08] [INFO] Downloader: Successfully downloaded data from https://chromium-case-study.s3.us-east-1.amazonaws.com/candidate+feeds/University-of-Havana.json to C:\Users\danie\Documents\Daniel\Trabajo\EightBit\CandidateFIlterGui\CandidateFIlter\build\data/University-of-São-Paulo.json
+[2025-02-12 15:16:08] [INFO] Parser: Processing file: C:\Users\danie\Documents\Daniel\Trabajo\EightBit\CandidateFIlterGui\CandidateFIlter\build\data/Polytechnic-University-of-Bucharest.xml
+[2025-02-12 15:16:08] [INFO] Parser: Extracted university name: Polytechnic University Of Bucharest
+[2025-02-12 15:16:08] [INFO] Parser-XML: Successfully parsed 104 candidates from XML file: C:\Users\danie\Documents\Daniel\Trabajo\EightBit\CandidateFIlterGui\CandidateFIlter\build\data/Polytechnic-University-of-Bucharest.xml
+[2025-02-12 15:16:08] [INFO] Parser: Processing file: C:\Users\danie\Documents\Daniel\Trabajo\EightBit\CandidateFIlterGui\CandidateFIlter\build\data/University-of-Florida.xml
+[2025-02-12 15:16:08] [INFO] Parser: Extracted university name: University Of Florida
+[2025-02-12 15:16:08] [ERROR] Parser-XML: Failed to load XML file: C:\Users\danie\Documents\Daniel\Trabajo\EightBit\CandidateFIlterGui\CandidateFIlter\build\data/University-of-Florida.xml. Error: Start-end tags mismatch
+[2025-02-12 15:16:08] [INFO] Parser: Processing file: C:\Users\danie\Documents\Daniel\Trabajo\EightBit\CandidateFIlterGui\CandidateFIlter\build\data/University-of-Havana.json
+[2025-02-12 15:16:08] [INFO] Parser: Extracted university name: University Of Havana
+[2025-02-12 15:16:08] [WARNING] Parser-JSON: Missing name for candidate 3 in file C:\Users\danie\Documents\Daniel\Trabajo\EightBit\CandidateFIlterGui\CandidateFIlter\build\data/University-of-Havana.json
+[2025-02-12 15:16:08] [WARNING] Parser-JSON: Missing name for candidate 5 in file C:\Users\danie\Documents\Daniel\Trabajo\EightBit\CandidateFIlterGui\CandidateFIlter\build\data/University-of-Havana.json
+[2025-02-12 15:16:08] [WARNING] Parser-JSON: Missing name for candidate 8 in file C:\Users\danie\Documents\Daniel\Trabajo\EightBit\CandidateFIlterGui\CandidateFIlter\build\data/University-of-Havana.json
+[2025-02-12 15:16:08] [WARNING] Parser-JSON: Missing name for candidate 9 in file C:\Users\danie\Documents\Daniel\Trabajo\EightBit\CandidateFIlterGui\CandidateFIlter\build\data/University-of-Havana.json
+[2025-02-12 15:16:08] [WARNING] Parser-JSON: Missing name for candidate 12 in file C:\Users\danie\Documents\Daniel\Trabajo\EightBit\CandidateFIlterGui\CandidateFIlter\build\data/University-of-Havana.json
+[2025-02-12 15:16:08] [WARNING] Parser-JSON: Missing name for candidate 13 in file C:\Users\danie\Documents\Daniel\Trabajo\EightBit\CandidateFIlterGui\CandidateFIlter\build\data/University-of-Havana.json
+[2025-02-12 15:16:08] [WARNING] Parser-JSON: Missing name for candidate 14 in file C:\Users\danie\Documents\Daniel\Trabajo\EightBit\CandidateFIlterGui\CandidateFIlter\build\data/University-of-Havana.json
+[2025-02-12 15:16:08] [WARNING] Parser-JSON: Missing name for candidate 17 in file C:\Users\danie\Documents\Daniel\Trabajo\EightBit\CandidateFIlterGui\CandidateFIlter\build\data/University-of-Havana.json
+[2025-02-12 15:16:08] [WARNING] Parser-JSON: Missing name for candidate 19 in file C:\Users\danie\Documents\Daniel\Trabajo\EightBit\CandidateFIlterGui\CandidateFIlter\build\data/University-of-Havana.json
+[2025-02-12 15:16:08] [INFO] Parser-JSON: Successfully parsed 19 candidates from JSON file: C:\Users\danie\Documents\Daniel\Trabajo\EightBit\CandidateFIlterGui\CandidateFIlter\build\data/University-of-Havana.json
+[2025-02-12 15:16:08] [INFO] Parser: Processing file: C:\Users\danie\Documents\Daniel\Trabajo\EightBit\CandidateFIlterGui\CandidateFIlter\build\data/University-of-São-Paulo.json
+[2025-02-12 15:16:08] [INFO] Parser: Extracted university name: University Of Sao Paulo
+[2025-02-12 15:16:08] [INFO] Parser-JSON: Successfully parsed 132 candidates from JSON file: C:\Users\danie\Documents\Daniel\Trabajo\EightBit\CandidateFIlterGui\CandidateFIlter\build\data/University-of-São-Paulo.json
+[2025-02-12 15:16:08] [INFO] Parser: Total candidates processed: 255
+[2025-02-12 15:16:08] [INFO] MainWindow: Successfully loaded 255 candidates
+[2025-02-12 15:16:08] [INFO] Downloader: Downloader cleanup completed
+[2025-02-12 15:16:24] [INFO] FileOperation: Successfully loaded 1 candidates from file
+[2025-02-12 15:21:47] [INFO] Downloader: Downloader initialized with cURL
+[2025-02-12 15:21:47] [INFO] Downloader: Data folder already exists: C:\Users\danie\Documents\Daniel\Trabajo\EightBit\CandidateFIlterGui\CandidateFIlter\build\data
+[2025-02-12 15:21:47] [INFO] Downloader: Using data folder path: C:\Users\danie\Documents\Daniel\Trabajo\EightBit\CandidateFIlterGui\CandidateFIlter\build\data
+[2025-02-12 15:21:48] [INFO] Downloader: Successfully downloaded data from https://chromium-case-study.s3.us-east-1.amazonaws.com/candidate+feeds/Polytechnic-University-of-Bucharest.xml to C:\Users\danie\Documents\Daniel\Trabajo\EightBit\CandidateFIlterGui\CandidateFIlter\build\data/Polytechnic-University-of-Bucharest.xml
+[2025-02-12 15:21:48] [INFO] Downloader: Successfully downloaded data from https://chromium-case-study.s3.us-east-1.amazonaws.com/candidate+feeds/University-of-S%C3%A3o-Paulo.xml to C:\Users\danie\Documents\Daniel\Trabajo\EightBit\CandidateFIlterGui\CandidateFIlter\build\data/University-of-Florida.xml
+[2025-02-12 15:21:48] [INFO] Downloader: Successfully downloaded data from https://chromium-case-study.s3.us-east-1.amazonaws.com/candidate+feeds/University-of-Florida.json to C:\Users\danie\Documents\Daniel\Trabajo\EightBit\CandidateFIlterGui\CandidateFIlter\build\data/University-of-Havana.json
+[2025-02-12 15:21:49] [INFO] Downloader: Successfully downloaded data from https://chromium-case-study.s3.us-east-1.amazonaws.com/candidate+feeds/University-of-Havana.json to C:\Users\danie\Documents\Daniel\Trabajo\EightBit\CandidateFIlterGui\CandidateFIlter\build\data/University-of-São-Paulo.json
+[2025-02-12 15:21:49] [INFO] Parser: Processing file: C:\Users\danie\Documents\Daniel\Trabajo\EightBit\CandidateFIlterGui\CandidateFIlter\build\data/Polytechnic-University-of-Bucharest.xml
+[2025-02-12 15:21:49] [INFO] Parser: Extracted university name: Polytechnic University Of Bucharest
+[2025-02-12 15:21:49] [INFO] Parser-XML: Successfully parsed 104 candidates from XML file: C:\Users\danie\Documents\Daniel\Trabajo\EightBit\CandidateFIlterGui\CandidateFIlter\build\data/Polytechnic-University-of-Bucharest.xml
+[2025-02-12 15:21:49] [INFO] Parser: Processing file: C:\Users\danie\Documents\Daniel\Trabajo\EightBit\CandidateFIlterGui\CandidateFIlter\build\data/University-of-Florida.xml
+[2025-02-12 15:21:49] [INFO] Parser: Extracted university name: University Of Florida
+[2025-02-12 15:21:49] [ERROR] Parser-XML: Failed to load XML file: C:\Users\danie\Documents\Daniel\Trabajo\EightBit\CandidateFIlterGui\CandidateFIlter\build\data/University-of-Florida.xml. Error: Start-end tags mismatch
+[2025-02-12 15:21:49] [INFO] Parser: Processing file: C:\Users\danie\Documents\Daniel\Trabajo\EightBit\CandidateFIlterGui\CandidateFIlter\build\data/University-of-Havana.json
+[2025-02-12 15:21:49] [INFO] Parser: Extracted university name: University Of Havana
+[2025-02-12 15:21:49] [WARNING] Parser-JSON: Missing name for candidate 3 in file C:\Users\danie\Documents\Daniel\Trabajo\EightBit\CandidateFIlterGui\CandidateFIlter\build\data/University-of-Havana.json
+[2025-02-12 15:21:49] [WARNING] Parser-JSON: Missing name for candidate 5 in file C:\Users\danie\Documents\Daniel\Trabajo\EightBit\CandidateFIlterGui\CandidateFIlter\build\data/University-of-Havana.json
+[2025-02-12 15:21:49] [WARNING] Parser-JSON: Missing name for candidate 8 in file C:\Users\danie\Documents\Daniel\Trabajo\EightBit\CandidateFIlterGui\CandidateFIlter\build\data/University-of-Havana.json
+[2025-02-12 15:21:49] [WARNING] Parser-JSON: Missing name for candidate 9 in file C:\Users\danie\Documents\Daniel\Trabajo\EightBit\CandidateFIlterGui\CandidateFIlter\build\data/University-of-Havana.json
+[2025-02-12 15:21:49] [WARNING] Parser-JSON: Missing name for candidate 12 in file C:\Users\danie\Documents\Daniel\Trabajo\EightBit\CandidateFIlterGui\CandidateFIlter\build\data/University-of-Havana.json
+[2025-02-12 15:21:49] [WARNING] Parser-JSON: Missing name for candidate 13 in file C:\Users\danie\Documents\Daniel\Trabajo\EightBit\CandidateFIlterGui\CandidateFIlter\build\data/University-of-Havana.json
+[2025-02-12 15:21:49] [WARNING] Parser-JSON: Missing name for candidate 14 in file C:\Users\danie\Documents\Daniel\Trabajo\EightBit\CandidateFIlterGui\CandidateFIlter\build\data/University-of-Havana.json
+[2025-02-12 15:21:49] [WARNING] Parser-JSON: Missing name for candidate 17 in file C:\Users\danie\Documents\Daniel\Trabajo\EightBit\CandidateFIlterGui\CandidateFIlter\build\data/University-of-Havana.json
+[2025-02-12 15:21:49] [WARNING] Parser-JSON: Missing name for candidate 19 in file C:\Users\danie\Documents\Daniel\Trabajo\EightBit\CandidateFIlterGui\CandidateFIlter\build\data/University-of-Havana.json
+[2025-02-12 15:21:49] [INFO] Parser-JSON: Successfully parsed 19 candidates from JSON file: C:\Users\danie\Documents\Daniel\Trabajo\EightBit\CandidateFIlterGui\CandidateFIlter\build\data/University-of-Havana.json
+[2025-02-12 15:21:49] [INFO] Parser: Processing file: C:\Users\danie\Documents\Daniel\Trabajo\EightBit\CandidateFIlterGui\CandidateFIlter\build\data/University-of-São-Paulo.json
+[2025-02-12 15:21:49] [INFO] Parser: Extracted university name: University Of Sao Paulo
+[2025-02-12 15:21:49] [INFO] Parser-JSON: Successfully parsed 132 candidates from JSON file: C:\Users\danie\Documents\Daniel\Trabajo\EightBit\CandidateFIlterGui\CandidateFIlter\build\data/University-of-São-Paulo.json
+[2025-02-12 15:21:49] [INFO] Parser: Total candidates processed: 255
+[2025-02-12 15:21:49] [INFO] MainWindow: Successfully loaded 255 candidates
+[2025-02-12 15:21:49] [INFO] Downloader: Downloader cleanup completed
+[2025-02-12 15:30:44] [INFO] Downloader: Downloader initialized with cURL
+[2025-02-12 15:30:44] [INFO] Downloader: Data folder already exists: C:\Users\danie\Documents\Daniel\Trabajo\EightBit\CandidateFIlterGui\CandidateFIlter\build\data
+[2025-02-12 15:30:44] [INFO] Downloader: Using data folder path: C:\Users\danie\Documents\Daniel\Trabajo\EightBit\CandidateFIlterGui\CandidateFIlter\build\data
+[2025-02-12 15:30:44] [INFO] Downloader: Successfully downloaded data from https://chromium-case-study.s3.us-east-1.amazonaws.com/candidate+feeds/Polytechnic-University-of-Bucharest.xml to C:\Users\danie\Documents\Daniel\Trabajo\EightBit\CandidateFIlterGui\CandidateFIlter\build\data/Polytechnic-University-of-Bucharest.xml
+[2025-02-12 15:30:45] [INFO] Downloader: Successfully downloaded data from https://chromium-case-study.s3.us-east-1.amazonaws.com/candidate+feeds/University-of-S%C3%A3o-Paulo.xml to C:\Users\danie\Documents\Daniel\Trabajo\EightBit\CandidateFIlterGui\CandidateFIlter\build\data/University-of-Florida.xml
+[2025-02-12 15:30:45] [INFO] Downloader: Successfully downloaded data from https://chromium-case-study.s3.us-east-1.amazonaws.com/candidate+feeds/University-of-Florida.json to C:\Users\danie\Documents\Daniel\Trabajo\EightBit\CandidateFIlterGui\CandidateFIlter\build\data/University-of-Havana.json
+[2025-02-12 15:30:45] [INFO] Downloader: Successfully downloaded data from https://chromium-case-study.s3.us-east-1.amazonaws.com/candidate+feeds/University-of-Havana.json to C:\Users\danie\Documents\Daniel\Trabajo\EightBit\CandidateFIlterGui\CandidateFIlter\build\data/University-of-São-Paulo.json
+[2025-02-12 15:30:45] [INFO] Parser: Processing file: C:\Users\danie\Documents\Daniel\Trabajo\EightBit\CandidateFIlterGui\CandidateFIlter\build\data/Polytechnic-University-of-Bucharest.xml
+[2025-02-12 15:30:45] [INFO] Parser: Extracted university name: Polytechnic University Of Bucharest
+[2025-02-12 15:30:45] [INFO] Parser-XML: Successfully parsed 104 candidates from XML file: C:\Users\danie\Documents\Daniel\Trabajo\EightBit\CandidateFIlterGui\CandidateFIlter\build\data/Polytechnic-University-of-Bucharest.xml
+[2025-02-12 15:30:45] [INFO] Parser: Processing file: C:\Users\danie\Documents\Daniel\Trabajo\EightBit\CandidateFIlterGui\CandidateFIlter\build\data/University-of-Florida.xml
+[2025-02-12 15:30:45] [INFO] Parser: Extracted university name: University Of Florida
+[2025-02-12 15:30:45] [ERROR] Parser-XML: Failed to load XML file: C:\Users\danie\Documents\Daniel\Trabajo\EightBit\CandidateFIlterGui\CandidateFIlter\build\data/University-of-Florida.xml. Error: Start-end tags mismatch
+[2025-02-12 15:30:45] [INFO] Parser: Processing file: C:\Users\danie\Documents\Daniel\Trabajo\EightBit\CandidateFIlterGui\CandidateFIlter\build\data/University-of-Havana.json
+[2025-02-12 15:30:45] [INFO] Parser: Extracted university name: University Of Havana
+[2025-02-12 15:30:45] [WARNING] Parser-JSON: Missing name for candidate 3 in file C:\Users\danie\Documents\Daniel\Trabajo\EightBit\CandidateFIlterGui\CandidateFIlter\build\data/University-of-Havana.json
+[2025-02-12 15:30:45] [WARNING] Parser-JSON: Missing name for candidate 5 in file C:\Users\danie\Documents\Daniel\Trabajo\EightBit\CandidateFIlterGui\CandidateFIlter\build\data/University-of-Havana.json
+[2025-02-12 15:30:45] [WARNING] Parser-JSON: Missing name for candidate 8 in file C:\Users\danie\Documents\Daniel\Trabajo\EightBit\CandidateFIlterGui\CandidateFIlter\build\data/University-of-Havana.json
+[2025-02-12 15:30:45] [WARNING] Parser-JSON: Missing name for candidate 9 in file C:\Users\danie\Documents\Daniel\Trabajo\EightBit\CandidateFIlterGui\CandidateFIlter\build\data/University-of-Havana.json
+[2025-02-12 15:30:45] [WARNING] Parser-JSON: Missing name for candidate 12 in file C:\Users\danie\Documents\Daniel\Trabajo\EightBit\CandidateFIlterGui\CandidateFIlter\build\data/University-of-Havana.json
+[2025-02-12 15:30:45] [WARNING] Parser-JSON: Missing name for candidate 13 in file C:\Users\danie\Documents\Daniel\Trabajo\EightBit\CandidateFIlterGui\CandidateFIlter\build\data/University-of-Havana.json
+[2025-02-12 15:30:45] [WARNING] Parser-JSON: Missing name for candidate 14 in file C:\Users\danie\Documents\Daniel\Trabajo\EightBit\CandidateFIlterGui\CandidateFIlter\build\data/University-of-Havana.json
+[2025-02-12 15:30:45] [WARNING] Parser-JSON: Missing name for candidate 17 in file C:\Users\danie\Documents\Daniel\Trabajo\EightBit\CandidateFIlterGui\CandidateFIlter\build\data/University-of-Havana.json
+[2025-02-12 15:30:45] [WARNING] Parser-JSON: Missing name for candidate 19 in file C:\Users\danie\Documents\Daniel\Trabajo\EightBit\CandidateFIlterGui\CandidateFIlter\build\data/University-of-Havana.json
+[2025-02-12 15:30:45] [INFO] Parser-JSON: Successfully parsed 19 candidates from JSON file: C:\Users\danie\Documents\Daniel\Trabajo\EightBit\CandidateFIlterGui\CandidateFIlter\build\data/University-of-Havana.json
+[2025-02-12 15:30:45] [INFO] Parser: Processing file: C:\Users\danie\Documents\Daniel\Trabajo\EightBit\CandidateFIlterGui\CandidateFIlter\build\data/University-of-São-Paulo.json
+[2025-02-12 15:30:45] [INFO] Parser: Extracted university name: University Of Sao Paulo
+[2025-02-12 15:30:45] [INFO] Parser-JSON: Successfully parsed 132 candidates from JSON file: C:\Users\danie\Documents\Daniel\Trabajo\EightBit\CandidateFIlterGui\CandidateFIlter\build\data/University-of-São-Paulo.json
+[2025-02-12 15:30:45] [INFO] Parser: Total candidates processed: 255
+[2025-02-12 15:30:45] [INFO] MainWindow: Successfully loaded 255 candidates
+[2025-02-12 15:30:45] [INFO] Downloader: Downloader cleanup completed

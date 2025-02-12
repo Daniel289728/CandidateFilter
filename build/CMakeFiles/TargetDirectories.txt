@@ -1,0 +1,4 @@
+C:/Users/danie/Documents/Daniel/Trabajo/EightBit/CandidateFIlterGui/CandidateFIlter/build/CMakeFiles/CandidateFIlter.dir
+C:/Users/danie/Documents/Daniel/Trabajo/EightBit/CandidateFIlterGui/CandidateFIlter/build/CMakeFiles/INSTALL.dir
+C:/Users/danie/Documents/Daniel/Trabajo/EightBit/CandidateFIlterGui/CandidateFIlter/build/CMakeFiles/ALL_BUILD.dir
+C:/Users/danie/Documents/Daniel/Trabajo/EightBit/CandidateFIlterGui/CandidateFIlter/build/CMakeFiles/ZERO_CHECK.dir

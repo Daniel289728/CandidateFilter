@@ -1,0 +1,22 @@
+^C:\USERS\DANIE\DOCUMENTS\DANIEL\TRABAJO\EIGHTBIT\CANDIDATEFILTERGUI\CANDIDATEFILTER\BUILD\CMAKEFILES\13DFE4B024C3B8D62A9B9864F3E1B60B\AUTOUIC_(CONFIG).STAMP.RULE
+setlocal
+cd C:\Users\danie\Documents\Daniel\Trabajo\EightBit\CandidateFIlterGui\CandidateFIlter\build
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\DANIE\DOCUMENTS\DANIEL\TRABAJO\EIGHTBIT\CANDIDATEFILTERGUI\CANDIDATEFILTER\CMAKELISTS.TXT
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/danie/Documents/Daniel/Trabajo/EightBit/CandidateFIlterGui/CandidateFIlter -BC:/Users/danie/Documents/Daniel/Trabajo/EightBit/CandidateFIlterGui/CandidateFIlter/build --check-stamp-file C:/Users/danie/Documents/Daniel/Trabajo/EightBit/CandidateFIlterGui/CandidateFIlter/build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

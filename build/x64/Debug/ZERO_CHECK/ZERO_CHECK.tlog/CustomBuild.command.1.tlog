@@ -1,0 +1,10 @@
+^C:\USERS\DANIE\DOCUMENTS\DANIEL\TRABAJO\EIGHTBIT\CANDIDATEFILTERGUI\CANDIDATEFILTER\BUILD\CMAKEFILES\2138A8A233A46BC4F460A242D24847A1\GENERATE.STAMP.RULE
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/danie/Documents/Daniel/Trabajo/EightBit/CandidateFIlterGui/CandidateFIlter -BC:/Users/danie/Documents/Daniel/Trabajo/EightBit/CandidateFIlterGui/CandidateFIlter/build --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file C:/Users/danie/Documents/Daniel/Trabajo/EightBit/CandidateFIlterGui/CandidateFIlter/build/CandidateFIlter.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

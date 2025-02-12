@@ -10,7 +10,6 @@
 #include <QFile>
 #include <QTextStream>
 #include "Logger.h"
-#include <stdexcept>
 #include "Downloader.h"
 #include "Parser.h"
 #include "candidatescorer.h"
@@ -288,11 +287,11 @@ void MainWindow::saveFilteredCandidates() {
             candidateObject["gpa"] = candidate.getGPA();
             candidateObject["score"] = candidate.getScore();
 
-            QVector<QString> skillsVector;
+            QStringList skillsList;
             for (const auto& skill : candidate.getSkills()) {
-                skillsVector.append(QString::fromStdString(skill));
+                skillsList.append(QString::fromStdString(skill));
             }
-            candidateObject["skills"] = QJsonArray::fromStringList(skillsVector);
+            candidateObject["skills"] = QJsonArray::fromStringList(skillsList);
 
             candidatesArray.append(candidateObject);
         }
@@ -313,6 +312,7 @@ void MainWindow::saveFilteredCandidates() {
 void MainWindow::loadFilteredCandidates() {
     QString fileName = QFileDialog::getOpenFileName(this, "Open Filters", "", "JSON Files (*.json);;All Files (*)");
     if (fileName.isEmpty()) {
+        Logger::getInstance().log(Logger::LogLevel::LOG_WARNING, "Loaded empty file", "loadFilteredCandidates");
         return;
     }
 

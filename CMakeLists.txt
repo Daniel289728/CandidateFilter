@@ -57,6 +57,8 @@ else()
     else()
         add_executable(CandidateFIlter
             ${PROJECT_SOURCES}
+            candidate.cpp candidatefilter.cpp candidatescorer.cpp downloader.cpp logger.cpp main.cpp mainwindow.cpp parser.cpp pugixml.cpp
+            pugiconfig.hpp pugixml.hpp candidate.h candidatefilter.h candidatescorer.h downloader.h logger.h mainwindow.h parser.h
         )
     endif()
 endif()

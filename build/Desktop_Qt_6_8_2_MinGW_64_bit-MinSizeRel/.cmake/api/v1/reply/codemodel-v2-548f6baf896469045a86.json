@@ -1,0 +1,79 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-MinSizeRel-53de8ea1862019dd7bfa.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"name" : "MinSizeRel",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "CandidateFIlter",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "CandidateFIlter::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-CandidateFIlter-MinSizeRel-8e1c8a067432785794b9.json",
+					"name" : "CandidateFIlter",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "CandidateFIlter_autogen::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-CandidateFIlter_autogen-MinSizeRel-ec701a8b531e66aa2db1.json",
+					"name" : "CandidateFIlter_autogen",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "CandidateFIlter_autogen_timestamp_deps::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-CandidateFIlter_autogen_timestamp_deps-MinSizeRel-a8c06deb8226166c2712.json",
+					"name" : "CandidateFIlter_autogen_timestamp_deps",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "C:/Users/danie/Documents/Daniel/Trabajo/EightBit/CandidateFIlterGui/CandidateFIlter/build/Desktop_Qt_6_8_2_MinGW_64_bit-MinSizeRel",
+		"source" : "C:/Users/danie/Documents/Daniel/Trabajo/EightBit/CandidateFIlterGui/CandidateFIlter"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 7
+	}
+}

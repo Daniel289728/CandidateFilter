@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\Users\danie\Documents\Daniel\Trabajo\EightBit\CandidateFIlterGui\CandidateFIlter\build\CandidateFIlter_autogen\mocs_compilation_Debug.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\danie\Documents\Daniel\Trabajo\EightBit\CandidateFIlterGui\CandidateFIlter\main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\danie\Documents\Daniel\Trabajo\EightBit\CandidateFIlterGui\CandidateFIlter\mainwindow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\danie\Documents\Daniel\Trabajo\EightBit\CandidateFIlterGui\CandidateFIlter\build\CandidateFIlter_autogen\mocs_compilation_Release.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\danie\Documents\Daniel\Trabajo\EightBit\CandidateFIlterGui\CandidateFIlter\build\CandidateFIlter_autogen\mocs_compilation_MinSizeRel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\danie\Documents\Daniel\Trabajo\EightBit\CandidateFIlterGui\CandidateFIlter\build\CandidateFIlter_autogen\mocs_compilation_RelWithDebInfo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="C:\Users\danie\Documents\Daniel\Trabajo\EightBit\CandidateFIlterGui\CandidateFIlter\mainwindow.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\danie\Documents\Daniel\Trabajo\EightBit\CandidateFIlterGui\CandidateFIlter\build\CandidateFIlter_autogen\include_Debug\ui_mainwindow.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\danie\Documents\Daniel\Trabajo\EightBit\CandidateFIlterGui\CandidateFIlter\build\CandidateFIlter_autogen\include_Release\ui_mainwindow.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\danie\Documents\Daniel\Trabajo\EightBit\CandidateFIlterGui\CandidateFIlter\build\CandidateFIlter_autogen\include_MinSizeRel\ui_mainwindow.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\danie\Documents\Daniel\Trabajo\EightBit\CandidateFIlterGui\CandidateFIlter\build\CandidateFIlter_autogen\include_RelWithDebInfo\ui_mainwindow.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\danie\Documents\Daniel\Trabajo\EightBit\CandidateFIlterGui\CandidateFIlter\build\CMakeFiles\13dfe4b024c3b8d62a9b9864f3e1b60b\autouic_(CONFIG).stamp.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\danie\Documents\Daniel\Trabajo\EightBit\CandidateFIlterGui\CandidateFIlter\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Natvis Include="C:\Users\danie\vcpkg\installed\x64-windows\share\nlohmann_json\nlohmann_json.natvis" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="C:\Users\danie\Documents\Daniel\Trabajo\EightBit\CandidateFIlterGui\CandidateFIlter\mainwindow.ui" />
+    <None Include="C:\Users\danie\Documents\Daniel\Trabajo\EightBit\CandidateFIlterGui\CandidateFIlter\build\CandidateFIlter_autogen\autouic_Debug.stamp" />
+    <None Include="C:\Users\danie\Documents\Daniel\Trabajo\EightBit\CandidateFIlterGui\CandidateFIlter\build\CandidateFIlter_autogen\autouic_Release.stamp" />
+    <None Include="C:\Users\danie\Documents\Daniel\Trabajo\EightBit\CandidateFIlterGui\CandidateFIlter\build\CandidateFIlter_autogen\autouic_MinSizeRel.stamp" />
+    <None Include="C:\Users\danie\Documents\Daniel\Trabajo\EightBit\CandidateFIlterGui\CandidateFIlter\build\CandidateFIlter_autogen\autouic_RelWithDebInfo.stamp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{C995BA2F-4061-3F95-872A-2FE19812E2F6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{81C15A0B-5127-349C-B92A-CDDB85B40884}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{D0668C07-FAFC-3BD1-A6DA-BDC281D4BCA7}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

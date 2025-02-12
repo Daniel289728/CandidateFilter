@@ -1,5 +1,6 @@
 #include "Logger.h"
 #include <QTextStream>
+#include<QDebug>
 
 Logger::Logger() {
     // Initialize log file with default name
