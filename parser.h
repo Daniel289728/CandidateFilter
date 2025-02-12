@@ -5,6 +5,7 @@
 #include <nlohmann/json.hpp>  // For JSON parsing
 #include <pugixml.hpp>        // For XML parsing
 #include "candidate.h"
+#include "logger.h"
 
 class Parser
 {

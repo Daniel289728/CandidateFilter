@@ -1,20 +1,20 @@
 #include "downloader.h"
 #include <curl/curl.h>
-#include <iostream>
 #include <fstream>
 #include <sstream>
-#include <filesystem>  // For filesystem handling
-
-// Constructor
+#include <filesystem>
 Downloader::Downloader() {
-    // Initialize cURL library
     curl_global_init(CURL_GLOBAL_DEFAULT);
+    Logger::getInstance().log(Logger::LOG_INFO, 
+        QString("Downloader initialized with cURL"), 
+        QString("Downloader"));
 }
 
-// Destructor
 Downloader::~Downloader() {
-    // Clean up cURL
     curl_global_cleanup();
+    Logger::getInstance().log(Logger::LOG_INFO, 
+        QString("Downloader cleanup completed"), 
+        QString("Downloader"));
 }
 
 size_t write_callback(void* contents, size_t size, size_t nmemb, void* userp) {
@@ -27,15 +27,18 @@ size_t write_callback(void* contents, size_t size, size_t nmemb, void* userp) {
 bool Downloader::downloadData(const std::string& url, const std::string& filePath) {
     CURL* curl = curl_easy_init();
     if (!curl) {
-        std::cerr << "Failed to initialize cURL." << std::endl;
+        Logger::getInstance().log(Logger::LOG_ERROR, 
+            QString("Failed to initialize cURL"), 
+            QString("Downloader"));
         return false;
     }
 
     std::string response_data;
     FILE* file = fopen(filePath.c_str(), "wb");
     if (!file) {
-        std::cerr << "Failed to open file for writing: " << filePath << std::endl;
-        perror("Error");
+        Logger::getInstance().log(Logger::LOG_ERROR,
+            QString("Failed to open file for writing: %1").arg(QString::fromStdString(filePath)),
+            QString("Downloader"));
         return false;
     }
 
@@ -51,16 +54,21 @@ bool Downloader::downloadData(const std::string& url, const std::string& filePat
     CURLcode res = curl_easy_perform(curl);
 
     if (res != CURLE_OK) {
-        std::cerr << "Failed to download data from " << url << " Error: " << curl_easy_strerror(res) << std::endl;
+        Logger::getInstance().log(Logger::LOG_ERROR,
+            QString("Failed to download data from %1. Error: %2")
+                .arg(QString::fromStdString(url))
+                .arg(curl_easy_strerror(res)),
+            QString("Downloader"));
         fclose(file);
         curl_easy_cleanup(curl);
         return false;
     }
 
-    // Write the received data to the file
     size_t written = fwrite(response_data.c_str(), 1, response_data.size(), file);
     if (written != response_data.size()) {
-        std::cerr << "Error writing to file: " << filePath << std::endl;
+        Logger::getInstance().log(Logger::LOG_ERROR,
+            QString("Error writing to file: %1").arg(QString::fromStdString(filePath)),
+            QString("Downloader"));
         fclose(file);
         curl_easy_cleanup(curl);
         return false;
@@ -68,6 +76,12 @@ bool Downloader::downloadData(const std::string& url, const std::string& filePat
 
     fclose(file);
     curl_easy_cleanup(curl);
+
+    Logger::getInstance().log(Logger::LOG_INFO,
+        QString("Successfully downloaded data from %1 to %2")
+            .arg(QString::fromStdString(url))
+            .arg(QString::fromStdString(filePath)),
+        QString("Downloader"));
 
     return true;
 }
@@ -79,11 +93,24 @@ bool Downloader::ensureDataFolderExists() {
 
     // Check if the directory exists, create it if it doesn't
     if (!std::filesystem::exists(dataFolder)) {
-        std::cout << "Data folder does not exist. Creating directory: " << dataFolderPath << std::endl;
-        std::filesystem::create_directory(dataFolder);
-    }
-    else {
-        std::cout << "Data folder already exists: " << dataFolderPath << std::endl;
+        Logger::getInstance().log(Logger::LOG_INFO,
+            QString("Data folder does not exist. Creating directory: %1")
+                .arg(QString::fromStdString(dataFolderPath)),
+            QString("Downloader"));
+        try {
+            std::filesystem::create_directory(dataFolder);
+        } catch (const std::filesystem::filesystem_error& e) {
+            Logger::getInstance().log(Logger::LOG_ERROR,
+                QString("Failed to create data directory: %1")
+                    .arg(QString::fromStdString(dataFolderPath)),
+                QString("Downloader"));
+            return false;
+        }
+    } else {
+        Logger::getInstance().log(Logger::LOG_INFO,
+            QString("Data folder already exists: %1")
+                .arg(QString::fromStdString(dataFolderPath)),
+            QString("Downloader"));
     }
 
     return true;
@@ -103,13 +130,18 @@ std::vector<std::string> Downloader::downloadAllData() {
 
     // Ensure the data folder exists before downloading
     if (!ensureDataFolderExists()) {
-        std::cerr << "Failed to ensure data folder exists." << std::endl;
-        return downloadedFiles; // Return empty vector on failure
+        Logger::getInstance().log(Logger::LOG_ERROR,
+            QString("Failed to ensure data folder exists"),
+            QString("Downloader"));
+        return downloadedFiles;
     }
 
     // Get the data folder path dynamically
     std::string dataFolderPath = getDataFolderPath();
-    std::cout << "Data folder path: " << dataFolderPath << std::endl;
+    Logger::getInstance().log(Logger::LOG_INFO,
+        QString("Using data folder path: %1")
+            .arg(QString::fromStdString(dataFolderPath)),
+        QString("Downloader"));
 
     // Hardcoded university names based on known URLs
     std::vector<std::string> universityNames = {
@@ -121,23 +153,60 @@ std::vector<std::string> Downloader::downloadAllData() {
 
     for (size_t i = 0; i < urls.size(); ++i) {
         if (i >= universityNames.size()) {
-            std::cerr << "Error: More URLs than expected university names!" << std::endl;
+            Logger::getInstance().log(Logger::LOG_ERROR,
+                QString("More URLs than expected university names!"),
+                QString("Downloader"));
             break;
         }
 
         std::string filename = dataFolderPath + "/" + universityNames[i] + getFileExtension(urls[i]);
-        std::cout << "Downloading data to: " << filename << std::endl;
+        Logger::getInstance().log(Logger::LOG_INFO,
+            QString("Attempting to download data to: %1")
+                .arg(QString::fromStdString(filename)),
+            QString("Downloader"));
 
         if (downloadData(urls[i], filename)) {
             downloadedFiles.push_back(filename);  // Add successful file path to vector
         }
         else {
-            std::cerr << "Failed to download data from " << urls[i] << std::endl;
+            Logger::getInstance().log(Logger::LOG_ERROR,
+                QString("Failed to download data from %1")
+                    .arg(QString::fromStdString(urls[i])),
+                QString("Downloader"));
             success = false;
         }
     }
 
+    if (success) {
+        Logger::getInstance().log(Logger::LOG_INFO,
+            QString("Successfully downloaded %1 files")
+                .arg(downloadedFiles.size()),
+            QString("Downloader"));
+    }
+
     return success ? downloadedFiles : std::vector<std::string>();
+}
+
+
+
+// Save data to a file (helper function)
+bool Downloader::saveDataToFile(const std::string& data, const std::string& filename) {
+    std::ofstream outFile(filename);
+    if (!outFile.is_open()) {
+        Logger::getInstance().log(Logger::LOG_ERROR,
+            QString("Failed to open file for writing: %1")
+                .arg(QString::fromStdString(filename)),
+            QString("Downloader"));
+        return false;
+    }
+    outFile << data;
+    outFile.close();
+
+    Logger::getInstance().log(Logger::LOG_INFO,
+        QString("Successfully saved data to file: %1")
+            .arg(QString::fromStdString(filename)),
+        QString("Downloader"));
+    return true;
 }
 
 std::string Downloader::getFileExtension(const std::string& url) {
@@ -148,18 +217,4 @@ std::string Downloader::getFileExtension(const std::string& url) {
         return ".json";
     }
     return ".data";  // Default extension
-}
-
-
-
-// Save data to a file (helper function)
-bool Downloader::saveDataToFile(const std::string& data, const std::string& filename) {
-    std::ofstream outFile(filename);
-    if (!outFile.is_open()) {
-        std::cerr << "Failed to open file " << filename << std::endl;
-        return false;
-    }
-    outFile << data;
-    outFile.close();
-    return true;
 }

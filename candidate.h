@@ -2,7 +2,6 @@
 #define CANDIDATE_H
 #include <string>
 #include<vector>
-#include<iostream>
 
 class Candidate {
 private:
@@ -32,6 +31,5 @@ public:
     Candidate(const std::string& _name = "", const std::string& _university = "", double _gpa = 0.0,
               const std::vector<std::string>& _skills = {}, const std::string& _hobby = "", double _score = 0.0)
         : name(_name), university(_university), GPA(_gpa), skills(_skills), hobby(_hobby), score(_score) {}
-    void print(void) const;
 };
 #endif

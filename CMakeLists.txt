@@ -41,6 +41,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         parser.h parser.cpp
         pugiconfig.hpp pugixml.hpp
         pugixml.cpp
+        logger.h logger.cpp
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET CandidateFIlter APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR

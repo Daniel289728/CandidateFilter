@@ -121,6 +121,14 @@ build CMakeFiles/CandidateFIlter.dir/pugixml.cpp.obj: CXX_COMPILER__CandidateFIl
   OBJECT_DIR = CMakeFiles\CandidateFIlter.dir
   OBJECT_FILE_DIR = CMakeFiles\CandidateFIlter.dir
 
+build CMakeFiles/CandidateFIlter.dir/logger.cpp.obj: CXX_COMPILER__CandidateFIlter_unscanned_Debug C$:/Users/danie/Documents/Daniel/Trabajo/EightBit/CandidateFIlterGui/CandidateFIlter/logger.cpp || cmake_object_order_depends_target_CandidateFIlter
+  DEFINES = -DMINGW_HAS_SECURE_API=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NEEDS_QMAIN -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64
+  DEP_FILE = CMakeFiles\CandidateFIlter.dir\logger.cpp.obj.d
+  FLAGS = -DQT_QML_DEBUG -g -std=gnu++17 -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/danie/Documents/Daniel/Trabajo/EightBit/CandidateFIlterGui/CandidateFIlter/build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/CandidateFIlter_autogen/include -isystem C:/Qt/6.8.2/mingw_64/include/QtCore -isystem C:/Qt/6.8.2/mingw_64/include -isystem C:/Qt/6.8.2/mingw_64/mkspecs/win32-g++ -isystem C:/Qt/6.8.2/mingw_64/include/QtWidgets -isystem C:/Qt/6.8.2/mingw_64/include/QtGui -isystem C:/Users/danie/vcpkg/installed/x64-windows/include
+  OBJECT_DIR = CMakeFiles\CandidateFIlter.dir
+  OBJECT_FILE_DIR = CMakeFiles\CandidateFIlter.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target CandidateFIlter
@@ -129,7 +137,7 @@ build CMakeFiles/CandidateFIlter.dir/pugixml.cpp.obj: CXX_COMPILER__CandidateFIl
 #############################################
 # Link the executable CandidateFIlter.exe
 
-build CandidateFIlter.exe: CXX_EXECUTABLE_LINKER__CandidateFIlter_Debug CMakeFiles/CandidateFIlter.dir/CandidateFIlter_autogen/mocs_compilation.cpp.obj CMakeFiles/CandidateFIlter.dir/main.cpp.obj CMakeFiles/CandidateFIlter.dir/mainwindow.cpp.obj CMakeFiles/CandidateFIlter.dir/candidate.cpp.obj CMakeFiles/CandidateFIlter.dir/candidatefilter.cpp.obj CMakeFiles/CandidateFIlter.dir/candidatescorer.cpp.obj CMakeFiles/CandidateFIlter.dir/downloader.cpp.obj CMakeFiles/CandidateFIlter.dir/parser.cpp.obj CMakeFiles/CandidateFIlter.dir/pugixml.cpp.obj | C$:/Qt/6.8.2/mingw_64/lib/libQt6Widgets.a C$:/Qt/6.8.2/mingw_64/lib/libQt6Gui.a C$:/Qt/6.8.2/mingw_64/lib/libQt6Core.a C$:/Qt/6.8.2/mingw_64/lib/libQt6EntryPoint.a C$:/Users/danie/vcpkg/installed/x64-windows/debug/lib/libcurl-d.lib || CandidateFIlter_autogen CandidateFIlter_autogen_timestamp_deps
+build CandidateFIlter.exe: CXX_EXECUTABLE_LINKER__CandidateFIlter_Debug CMakeFiles/CandidateFIlter.dir/CandidateFIlter_autogen/mocs_compilation.cpp.obj CMakeFiles/CandidateFIlter.dir/main.cpp.obj CMakeFiles/CandidateFIlter.dir/mainwindow.cpp.obj CMakeFiles/CandidateFIlter.dir/candidate.cpp.obj CMakeFiles/CandidateFIlter.dir/candidatefilter.cpp.obj CMakeFiles/CandidateFIlter.dir/candidatescorer.cpp.obj CMakeFiles/CandidateFIlter.dir/downloader.cpp.obj CMakeFiles/CandidateFIlter.dir/parser.cpp.obj CMakeFiles/CandidateFIlter.dir/pugixml.cpp.obj CMakeFiles/CandidateFIlter.dir/logger.cpp.obj | C$:/Qt/6.8.2/mingw_64/lib/libQt6Widgets.a C$:/Qt/6.8.2/mingw_64/lib/libQt6Gui.a C$:/Qt/6.8.2/mingw_64/lib/libQt6Core.a C$:/Qt/6.8.2/mingw_64/lib/libQt6EntryPoint.a C$:/Users/danie/vcpkg/installed/x64-windows/debug/lib/libcurl-d.lib || CandidateFIlter_autogen CandidateFIlter_autogen_timestamp_deps
   FLAGS = -DQT_QML_DEBUG -g
   LINK_FLAGS = -mwindows
   LINK_LIBRARIES = C:/Qt/6.8.2/mingw_64/lib/libQt6Widgets.a  C:/Qt/6.8.2/mingw_64/lib/libQt6Gui.a  C:/Qt/6.8.2/mingw_64/lib/libQt6Core.a  -lmpr  -luserenv  -lmingw32  C:/Qt/6.8.2/mingw_64/lib/libQt6EntryPoint.a  -lshell32  -ld3d11  -ldxgi  -ldxguid  -ld3d12  C:/Users/danie/vcpkg/installed/x64-windows/debug/lib/libcurl-d.lib  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32

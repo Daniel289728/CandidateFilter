@@ -1,12 +1,6 @@
 #include "candidate.h"
 #include <algorithm>
 
-void Candidate::print(void) const {
-    std::cout << "Name: " << name << "\nUniversity: " << university << "\nGPA: " << GPA << "\nSkills: ";
-    for (const auto& skill : skills) std::cout << skill << " ";
-    std::cout << "\nHobby: " << hobby << "\n";
-}
-
 const std::string& Candidate::getName() const{
     return name;
 }
@@ -58,8 +52,5 @@ void Candidate::addSkill(const std::string& newSkill) {
     // Optionally, check for duplicates before adding
     if (std::find(skills.begin(), skills.end(), newSkill) == skills.end()) {
         skills.push_back(newSkill);
-    }
-    else {
-        std::cout << "Skill already exists.\n";  // or use any other appropriate error handling
     }
 }

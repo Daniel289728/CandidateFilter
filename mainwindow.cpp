@@ -9,6 +9,8 @@
 #include <QSet>
 #include <QFile>
 #include <QTextStream>
+#include "Logger.h"
+#include <stdexcept>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent),
@@ -88,14 +90,49 @@ MainWindow::MainWindow(QWidget *parent)
 MainWindow::~MainWindow() {}
 
 void MainWindow::loadCandidates() {
-    Downloader downloader;
-    Parser parser;
+    try {
+        Downloader downloader;
+        Parser parser;
 
-    std::vector<std::string> rawData = downloader.downloadAllData();
-    candidates = parser.processDownloadedData(rawData);
-    CandidateScorer scorer;
-    scorer.assignScores(candidates);
-    displayCandidates(candidates);
+        std::vector<std::string> rawData;
+        try {
+            rawData = downloader.downloadAllData();
+        } catch (const std::exception& e) {
+            Logger::getInstance().log(Logger::LogLevel::LOG_ERROR,
+                QString("Failed to download candidate data: %1").arg(e.what()), 
+                "Downloader");
+            throw; // Re-throw to be caught by outer try-catch
+        }
+
+        try {
+            candidates = parser.processDownloadedData(rawData);
+        } catch (const std::exception& e) {
+            Logger::getInstance().log(Logger::LogLevel::LOG_ERROR,
+                QString("Failed to parse candidate data: %1").arg(e.what()), 
+                "Parser");
+            throw;
+        }
+
+        CandidateScorer scorer;
+        try {
+            scorer.assignScores(candidates);
+        } catch (const std::exception& e) {
+            Logger::getInstance().log(Logger::LogLevel::LOG_ERROR,
+                QString("Failed to assign scores: %1").arg(e.what()), 
+                "Scorer");
+            throw;
+        }
+
+        displayCandidates(candidates);
+        Logger::getInstance().log(Logger::LogLevel::LOG_INFO,
+            QString("Successfully loaded %1 candidates").arg(candidates.size()), 
+            "MainWindow");
+    } catch (const std::exception& e) {
+        Logger::getInstance().log(Logger::LogLevel::LOG_ERROR,
+            QString("Fatal error in loadCandidates: %1").arg(e.what()), 
+            "MainWindow");
+        QMessageBox::critical(this, "Error", "Failed to load candidates. Check error log for details.");
+    }
 }
 
 void MainWindow::displayCandidates(const std::vector<Candidate>& candidatesToShow) {
@@ -227,71 +264,127 @@ void MainWindow::applyFilters() {
 void MainWindow::saveFilteredCandidates() {
     QString fileName = QFileDialog::getSaveFileName(this, "Save Filters", "", "JSON Files (*.json);;All Files (*)");
     if (fileName.isEmpty()) {
-        return;  // No file selected
-    }
-
-    QJsonArray candidatesArray;
-    
-    // Use currentlyDisplayedCandidates instead of all candidates
-    for (const auto& candidate : currentlyDisplayedCandidates) {
-        QJsonObject candidateObject;
-        candidateObject["name"] = QString::fromStdString(candidate.getName());
-        candidateObject["university"] = QString::fromStdString(candidate.getUniversity());
-        candidateObject["gpa"] = candidate.getGPA();
-        candidateObject["score"] = candidate.getScore();
-
-        QVector<QString> skillsVector;
-        for (const auto& skill : candidate.getSkills()) {
-            skillsVector.append(QString::fromStdString(skill));
-        }
-        candidateObject["skills"] = QJsonArray::fromStringList(skillsVector);
-
-        candidatesArray.append(candidateObject);
+        return;
     }
 
     QFile saveFile(fileName);
-    if (saveFile.open(QIODevice::WriteOnly)) {
+    if (!saveFile.open(QIODevice::WriteOnly)) {
+        QString errorMsg = QString("Could not open file for writing: %1").arg(fileName);
+        Logger::getInstance().log(Logger::LogLevel::LOG_ERROR, errorMsg, "FileOperation");
+        QMessageBox::warning(this, "Error", "Could not save file");
+        return;
+    }
+
+    try {
+        QJsonArray candidatesArray;
+        for (const auto& candidate : currentlyDisplayedCandidates) {
+            QJsonObject candidateObject;
+            candidateObject["name"] = QString::fromStdString(candidate.getName());
+            candidateObject["university"] = QString::fromStdString(candidate.getUniversity());
+            candidateObject["gpa"] = candidate.getGPA();
+            candidateObject["score"] = candidate.getScore();
+
+            QVector<QString> skillsVector;
+            for (const auto& skill : candidate.getSkills()) {
+                skillsVector.append(QString::fromStdString(skill));
+            }
+            candidateObject["skills"] = QJsonArray::fromStringList(skillsVector);
+
+            candidatesArray.append(candidateObject);
+        }
+
         QJsonDocument doc(candidatesArray);
         saveFile.write(doc.toJson());
+        
+        Logger::getInstance().log(Logger::LogLevel::LOG_INFO,
+            QString("Successfully saved %1 candidates to file").arg(currentlyDisplayedCandidates.size()), 
+            "FileOperation");
+    } catch (const std::exception& e) {
+        QString errorMsg = QString("Error saving candidates: %1").arg(e.what());
+        Logger::getInstance().log(Logger::LogLevel::LOG_ERROR, errorMsg, "FileOperation");
+        QMessageBox::warning(this, "Error", "Error saving candidates. Check error log for details.");
     }
 }
 
 void MainWindow::loadFilteredCandidates() {
     QString fileName = QFileDialog::getOpenFileName(this, "Open Filters", "", "JSON Files (*.json);;All Files (*)");
     if (fileName.isEmpty()) {
-        return;  // No file selected
+        return;
     }
 
     QFile loadFile(fileName);
     if (!loadFile.open(QIODevice::ReadOnly)) {
+        QString errorMsg = QString("Could not open file: %1").arg(fileName);
+        Logger::getInstance().log(Logger::LogLevel::LOG_ERROR, errorMsg, "FileOperation");
         QMessageBox::warning(this, "Error", "Could not open file");
         return;
     }
 
-    QByteArray data = loadFile.readAll();
-    QJsonDocument doc(QJsonDocument::fromJson(data));
-    QJsonArray candidatesArray = doc.array();
-    candidates.clear();
-
-    for (const auto& item : candidatesArray) {
-        QJsonObject obj = item.toObject();
-        std::string name = obj["name"].toString().toStdString();
-        std::string university = obj["university"].toString().toStdString();
-        std::string hobby = obj["hobby"].toString().toStdString();
-        double gpa = obj["gpa"].toDouble();
-        double score = obj["score"].toDouble();
-
-        // Convert skills from JSON array to std::vector<std::string>
-        QJsonArray skillsArray = obj["skills"].toArray();
-        std::vector<std::string> skills;
-        for (const auto& skillItem : skillsArray) {
-            skills.push_back(skillItem.toString().toStdString());
+    try {
+        QByteArray data = loadFile.readAll();
+        QJsonDocument doc(QJsonDocument::fromJson(data));
+        
+        if (doc.isNull()) {
+            QString errorMsg = QString("Invalid JSON format in file: %1").arg(fileName);
+            Logger::getInstance().log(Logger::LogLevel::LOG_ERROR, errorMsg, "JSONParsing");
+            QMessageBox::warning(this, "Error", "Invalid file format");
+            return;
         }
 
-        candidates.push_back(Candidate(name, university, gpa, skills, hobby, score));
-    }
+        QJsonArray candidatesArray = doc.array();
+        candidates.clear();
 
-    displayCandidates(candidates);
+        for (int i = 0; i < candidatesArray.size(); ++i) {
+            try {
+                QJsonObject obj = candidatesArray[i].toObject();
+                
+                // Validate required fields
+                if (!obj.contains("name") || !obj.contains("university") || 
+                    !obj.contains("gpa") || !obj.contains("skills")) {
+                    QString errorMsg = QString("Missing required fields in candidate at index %1").arg(i);
+                    Logger::getInstance().log(Logger::LogLevel::LOG_ERROR, errorMsg, "DataValidation");
+                    continue; // Skip this candidate
+                }
+
+                std::string name = obj["name"].toString().toStdString();
+                std::string university = obj["university"].toString().toStdString();
+                double gpa = obj["gpa"].toDouble();
+                
+                // Validate GPA range
+                if (gpa < 0.0 || gpa > 4.0) {
+                    QString warnMsg = QString("Invalid GPA value (%1) for candidate: %2")
+                        .arg(gpa)
+                        .arg(QString::fromStdString(name));
+                    Logger::getInstance().log(Logger::LogLevel::LOG_WARNING, warnMsg, "DataValidation");
+                }
+
+                std::string hobby = obj["hobby"].toString().toStdString();
+                double score = obj["score"].toDouble();
+
+                QJsonArray skillsArray = obj["skills"].toArray();
+                std::vector<std::string> skills;
+                for (const auto& skillItem : skillsArray) {
+                    skills.push_back(skillItem.toString().toStdString());
+                }
+
+                candidates.push_back(Candidate(name, university, gpa, skills, hobby, score));
+            } catch (const std::exception& e) {
+                QString errorMsg = QString("Error processing candidate at index %1: %2")
+                    .arg(i)
+                    .arg(e.what());
+                Logger::getInstance().log(Logger::LogLevel::LOG_ERROR, errorMsg, "DataProcessing");
+            }
+        }
+
+        displayCandidates(candidates);
+        Logger::getInstance().log(Logger::LogLevel::LOG_INFO,
+            QString("Successfully loaded %1 candidates from file").arg(candidates.size()), 
+            "FileOperation");
+    } catch (const std::exception& e) {
+        QString errorMsg = QString("Error loading filtered candidates: %1").arg(e.what());
+        Logger::getInstance().log(Logger::LogLevel::LOG_ERROR, errorMsg, "FileProcessing");
+        QMessageBox::warning(this, "Error", "Error loading candidates. Check error log for details.");
+    }
 }
 
 void MainWindow::rankCandidates() {
