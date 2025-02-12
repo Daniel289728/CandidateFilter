@@ -31,15 +31,15 @@ std::vector<Candidate> Parser::parseXML(const std::string& filePath) {
     for (pugi::xml_node candidateNode = rootNode.child("candidate"); candidateNode;
          candidateNode = candidateNode.next_sibling("candidate")) {
         Candidate candidate;
-        candidate.name = candidateNode.child("name").text().as_string();
-        candidate.GPA = candidateNode.child("GPA").text().as_double();
+        candidate.setName(candidateNode.child("name").text().as_string());
+        candidate.setGPA(candidateNode.child("GPA").text().as_double());
 
         pugi::xml_node skillsNode = candidateNode.child("skills");
         for (pugi::xml_node skill = skillsNode.child("skill"); skill; skill = skill.next_sibling("skill")) {
-            candidate.skills.push_back(skill.text().as_string());
+            candidate.addSkill(skill.text().as_string());
         }
 
-        candidate.hobby = candidateNode.child("hobby").text().as_string();
+        candidate.setHobby(candidateNode.child("hobby").text().as_string());
 
         candidates.push_back(candidate);
     }
@@ -61,10 +61,10 @@ std::vector<Candidate> Parser::parseJSON(const std::string& filePath) {
 
     for (const auto& candidate : jsonData) {
         Candidate c;
-        if (candidate.contains("name")) c.name = candidate["name"];
-        if (candidate.contains("GPA")) c.GPA = candidate["GPA"];
-        if (candidate.contains("skills")) c.skills = candidate["skills"].get<std::vector<std::string>>();
-        if (candidate.contains("hobby")) c.hobby = candidate["hobby"];
+        if (candidate.contains("name")) c.setName(candidate["name"]);
+        if (candidate.contains("GPA")) c.setGPA(candidate["GPA"]);
+        if (candidate.contains("skills")) c.setSkills(candidate["skills"].get<std::vector<std::string>>());
+        if (candidate.contains("hobby")) c.setHobby(candidate["hobby"]);
 
         candidates.push_back(c);
     }
@@ -92,7 +92,7 @@ std::vector<Candidate> Parser::processDownloadedData(const std::vector<std::stri
 
         // Assign university name to each candidate (if necessary)
         for (auto& candidate : candidates) {
-            candidate.university = universityName;
+            candidate.setUniversity(universityName);
         }
 
         allCandidates.insert(allCandidates.end(), candidates.begin(), candidates.end());

@@ -1,11 +1,10 @@
 #include "MainWindow.h"
-#include <QHeaderView>
-#include <QMessageBox>
-#include <QFile>
-#include <QTextStream>
+#include <QFileDialog>
+#include <QJsonArray>
 #include <QJsonDocument>
 #include <QJsonObject>
-#include <QJsonArray>
+#include <QMessageBox>
+#include <QHeaderView>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), candidateTableView(new QTableView(this)),
@@ -36,54 +35,111 @@ MainWindow::MainWindow(QWidget *parent)
     connect(loadButton, &QPushButton::clicked, this, &MainWindow::loadFilteredCandidates);
     connect(rankButton, &QPushButton::clicked, this, &MainWindow::rankCandidates);
 
-    // Populate university and skills combos for demonstration
-    universityComboBox->addItem("Polytechnic University of Bucharest");
-    universityComboBox->addItem("University of São Paulo");
-    universityComboBox->addItem("University of Florida");
-    universityComboBox->addItem("University of Havana");
-
-    skillsComboBox->addItem("C++");
-    skillsComboBox->addItem("Python");
-    skillsComboBox->addItem("Machine Learning");
+    // Load candidate data on startup
+    loadCandidates();
 }
 
 MainWindow::~MainWindow() {}
 
+void MainWindow::loadCandidates() {
+    Downloader downloader;
+    Parser parser;
+
+    std::vector<std::string> rawData = downloader.downloadAllData();
+    candidates = parser.processDownloadedData(rawData);
+
+    displayCandidates(candidates);
+}
+
+void MainWindow::displayCandidates(const std::vector<Candidate>& candidatesToShow) {
+    candidateModel->setRowCount(0);  // Clear the table
+    for (const auto& c : candidatesToShow) {
+        QList<QStandardItem*> row;
+        row.append(new QStandardItem(QString::fromStdString(c.getName())));
+        row.append(new QStandardItem(QString::fromStdString(c.getUniversity())));
+        row.append(new QStandardItem(QString::number(c.getGPA())));
+        row.append(new QStandardItem(QString::fromStdString(c.getSkillsAsString())));
+        row.append(new QStandardItem(QString::number(c.getScore())));
+
+        candidateModel->appendRow(row);
+    }
+}
+
 void MainWindow::applyFilters() {
-    // Placeholder for filtering logic
-    QMessageBox::information(this, "Filters", "Filters applied!");
-}
+    std::vector<Candidate> filteredCandidates = candidates;
 
-void MainWindow::saveFilteredCandidates() {
-    // Save filtered data to disk
-    QString fileName = QFileDialog::getSaveFileName(this, "Save Filtered List", "", "JSON Files (*.json)");
-    if (!fileName.isEmpty()) {
-        QFile file(fileName);
-        if (file.open(QIODevice::WriteOnly)) {
-            QJsonObject json;
-            QJsonArray candidatesArray;
-            // Add candidate data as JSON objects
-            json["candidates"] = candidatesArray;
-            QTextStream stream(&file);
-            stream << QJsonDocument(json).toJson();
-        }
+    if (gpaRangeCheckBox->isChecked()) {
+        filteredCandidates = CandidateFilter::filterByGPA(filteredCandidates, 3.9);
     }
-}
 
-void MainWindow::loadFilteredCandidates() {
-    // Load filtered data from disk
-    QString fileName = QFileDialog::getOpenFileName(this, "Open Filtered List", "", "JSON Files (*.json)");
-    if (!fileName.isEmpty()) {
-        QFile file(fileName);
-        if (file.open(QIODevice::ReadOnly)) {
-            QByteArray data = file.readAll();
-            QJsonDocument doc = QJsonDocument::fromJson(data);
-            // Parse the loaded data and populate candidate model
-        }
+    if (!universityComboBox->currentText().isEmpty()) {
+        filteredCandidates = CandidateFilter::filterByUniversity(filteredCandidates, universityComboBox->currentText().toStdString());
     }
+
+    if (!skillsComboBox->currentText().isEmpty()) {
+        filteredCandidates = CandidateFilter::filterBySkill(filteredCandidates, skillsComboBox->currentText().toStdString());
+    }
+
+    displayCandidates(filteredCandidates);
 }
 
 void MainWindow::rankCandidates() {
-    // Apply ranking logic based on scoring
-    QMessageBox::information(this, "Ranking", "Candidates ranked!");
+    std::sort(candidates.begin(), candidates.end(), [](const Candidate& a, const Candidate& b) {
+        return a.getScore() > b.getScore();  // Higher score first
+    });
+    displayCandidates(candidates);
+}
+
+void MainWindow::saveFilteredCandidates() {
+    QString fileName = QFileDialog::getSaveFileName(this, "Save Filtered List", "", "JSON Files (*.json)");
+    if (fileName.isEmpty()) return;
+
+    QFile file(fileName);
+    if (!file.open(QIODevice::WriteOnly)) return;
+
+    QJsonArray jsonArray;
+    for (const auto& c : candidates) {
+        QJsonObject json;
+        json["name"] = QString::fromStdString(c.getName());
+        json["university"] = QString::fromStdString(c.getUniversity());
+        json["gpa"] = c.getGPA();
+        json["skills"] = QString::fromStdString(c.getSkillsAsString());
+        json["score"] = c.getScore();
+        jsonArray.append(json);
+    }
+
+    QJsonDocument doc(jsonArray);
+    file.write(doc.toJson());
+}
+
+void MainWindow::loadFilteredCandidates() {
+    QString fileName = QFileDialog::getOpenFileName(this, "Open Filtered List", "", "JSON Files (*.json)");
+    if (fileName.isEmpty()) return;
+
+    QFile file(fileName);
+    if (!file.open(QIODevice::ReadOnly)) return;
+
+    QByteArray data = file.readAll();
+    QJsonDocument doc = QJsonDocument::fromJson(data);
+    QJsonArray jsonArray = doc.array();
+
+    candidates.clear();
+    for (const auto& jsonValue : jsonArray) {
+        QJsonObject json = jsonValue.toObject();
+        // Extract skills as a QJsonArray and convert to std::vector<std::string>
+        QJsonArray skillsJsonArray = json["skills"].toArray();
+        std::vector<std::string> skills;
+        for (const auto& skillValue : skillsJsonArray) {
+            skills.push_back(skillValue.toString().toStdString());
+        }
+
+        Candidate c(json["name"].toString().toStdString(),
+                    json["university"].toString().toStdString(),
+                    json["gpa"].toDouble(),
+                    skills,
+                    json["hobby"].toString().toStdString(),
+                    json["score"].toInt());
+        candidates.push_back(c);
+    }
+    displayCandidates(candidates);
 }

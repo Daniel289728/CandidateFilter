@@ -4,7 +4,7 @@
 std::vector<Candidate> CandidateFilter::filterByGPA(const std::vector<Candidate>& candidates, double minGPA) {
     std::vector<Candidate> filtered;
     for (const auto& candidate : candidates) {
-        if (candidate.GPA >= minGPA) {
+        if (candidate.getGPA() >= minGPA) {
             filtered.push_back(candidate);
         }
     }
@@ -13,8 +13,9 @@ std::vector<Candidate> CandidateFilter::filterByGPA(const std::vector<Candidate>
 
 std::vector<Candidate> CandidateFilter::filterBySkill(const std::vector<Candidate>& candidates, const std::string& skill) {
     std::vector<Candidate> filtered;
+
     for (const auto& candidate : candidates) {
-        if (std::find(candidate.skills.begin(), candidate.skills.end(), skill) != candidate.skills.end()) {
+        if (std::find(candidate.getSkills().begin(), candidate.getSkills().end(), skill) != candidate.getSkills().end()) {
             filtered.push_back(candidate);
         }
     }
@@ -24,7 +25,7 @@ std::vector<Candidate> CandidateFilter::filterBySkill(const std::vector<Candidat
 std::vector<Candidate> CandidateFilter::filterByUniversity(const std::vector<Candidate>& candidates, const std::string& university) {
     std::vector<Candidate> filtered;
     for (const auto& candidate : candidates) {
-        if (candidate.university == university) {
+        if (candidate.getUniversity() == university) {
             filtered.push_back(candidate);
         }
     }
