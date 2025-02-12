@@ -31,3 +31,13 @@ std::vector<Candidate> CandidateFilter::filterByUniversity(const std::vector<Can
     }
     return filtered;
 }
+
+std::vector<Candidate> CandidateFilter::filterByScore(const std::vector<Candidate>& candidates, double minScore){
+    std::vector<Candidate> filtered;
+    for (const auto& candidate : candidates) {
+        if (candidate.getScore() >= minScore) {
+            filtered.push_back(candidate);
+        }
+    }
+    return filtered;
+}

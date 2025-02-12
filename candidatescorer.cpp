@@ -1,12 +1,15 @@
 #include "candidateScorer.h"
 
 
-void CandidateScorer::assignScores(std::vector<Candidate>& candidates) {
+void CandidateScorer::assignScores(std::vector<Candidate>& candidates){
     for (auto& candidate : candidates) {
         candidate.setScore(calculateScore(candidate));  // Calculate score for each candidate
     }
 }
-double CandidateScorer::calculateScore(const Candidate& candidate) {
+void CandidateScorer::assignScore(Candidate& candidate){
+    candidate.setScore(calculateScore(candidate));  // Calculate score for each candidat
+}
+double CandidateScorer::calculateScore(const Candidate& candidate) const{
     double score = 0.0;
 
     // GPA weight: Assume GPA is out of 4.0

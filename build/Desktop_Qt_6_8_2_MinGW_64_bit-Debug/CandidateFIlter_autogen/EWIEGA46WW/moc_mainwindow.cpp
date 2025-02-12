@@ -7,6 +7,7 @@
 *****************************************************************************/
 
 #include "../../../../mainwindow.h"
+#include <QtGui/qtextcursor.h>
 #include <QtCore/qmetatype.h>
 
 #include <QtCore/qtmochelpers.h>
@@ -38,12 +39,19 @@ struct qt_meta_tag_ZN10MainWindowE_t {};
 #ifdef QT_MOC_HAS_STRINGDATA
 static constexpr auto qt_meta_stringdata_ZN10MainWindowE = QtMocHelpers::stringData(
     "MainWindow",
-    "applyFilters",
+    "loadCandidates",
     "",
+    "displayCandidates",
+    "std::vector<Candidate>",
+    "candidatesToShow",
+    "applyFilters",
     "saveFilteredCandidates",
     "loadFilteredCandidates",
     "rankCandidates",
-    "loadCandidates"
+    "generateSummary",
+    "toggleView",
+    "onFilterChanged",
+    "text"
 );
 #else  // !QT_MOC_HAS_STRINGDATA
 #error "qtmochelpers.h not found or too old."
@@ -55,7 +63,7 @@ Q_CONSTINIT static const uint qt_meta_data_ZN10MainWindowE[] = {
       12,       // revision
        0,       // classname
        0,    0, // classinfo
-       5,   14, // methods
+       9,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -63,18 +71,26 @@ Q_CONSTINIT static const uint qt_meta_data_ZN10MainWindowE[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    0,   44,    2, 0x08,    1 /* Private */,
-       3,    0,   45,    2, 0x08,    2 /* Private */,
-       4,    0,   46,    2, 0x08,    3 /* Private */,
-       5,    0,   47,    2, 0x08,    4 /* Private */,
-       6,    0,   48,    2, 0x08,    5 /* Private */,
+       1,    0,   68,    2, 0x08,    1 /* Private */,
+       3,    1,   69,    2, 0x08,    2 /* Private */,
+       6,    0,   72,    2, 0x08,    4 /* Private */,
+       7,    0,   73,    2, 0x08,    5 /* Private */,
+       8,    0,   74,    2, 0x08,    6 /* Private */,
+       9,    0,   75,    2, 0x08,    7 /* Private */,
+      10,    0,   76,    2, 0x08,    8 /* Private */,
+      11,    0,   77,    2, 0x08,    9 /* Private */,
+      12,    1,   78,    2, 0x08,   10 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
+    QMetaType::Void, 0x80000000 | 4,    5,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void, QMetaType::QString,   13,
 
        0        // eod
 };
@@ -88,6 +104,11 @@ Q_CONSTINIT const QMetaObject MainWindow::staticMetaObject = { {
     qt_incomplete_metaTypeArray<qt_meta_tag_ZN10MainWindowE_t,
         // Q_OBJECT / Q_GADGET
         QtPrivate::TypeAndForceComplete<MainWindow, std::true_type>,
+        // method 'loadCandidates'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'displayCandidates'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const std::vector<Candidate> &, std::false_type>,
         // method 'applyFilters'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'saveFilteredCandidates'
@@ -96,8 +117,13 @@ Q_CONSTINIT const QMetaObject MainWindow::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'rankCandidates'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        // method 'loadCandidates'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>
+        // method 'generateSummary'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'toggleView'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'onFilterChanged'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const QString &, std::false_type>
     >,
     nullptr
 } };
@@ -107,15 +133,18 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
     auto *_t = static_cast<MainWindow *>(_o);
     if (_c == QMetaObject::InvokeMetaMethod) {
         switch (_id) {
-        case 0: _t->applyFilters(); break;
-        case 1: _t->saveFilteredCandidates(); break;
-        case 2: _t->loadFilteredCandidates(); break;
-        case 3: _t->rankCandidates(); break;
-        case 4: _t->loadCandidates(); break;
+        case 0: _t->loadCandidates(); break;
+        case 1: _t->displayCandidates((*reinterpret_cast< std::add_pointer_t<std::vector<Candidate>>>(_a[1]))); break;
+        case 2: _t->applyFilters(); break;
+        case 3: _t->saveFilteredCandidates(); break;
+        case 4: _t->loadFilteredCandidates(); break;
+        case 5: _t->rankCandidates(); break;
+        case 6: _t->generateSummary(); break;
+        case 7: _t->toggleView(); break;
+        case 8: _t->onFilterChanged((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
         default: ;
         }
     }
-    (void)_a;
 }
 
 const QMetaObject *MainWindow::metaObject() const
@@ -137,14 +166,14 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 5)
+        if (_id < 9)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 5;
+        _id -= 9;
     }
     if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 5)
+        if (_id < 9)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 5;
+        _id -= 9;
     }
     return _id;
 }

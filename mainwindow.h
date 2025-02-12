@@ -6,13 +6,18 @@
 #include <QStandardItemModel>
 #include <QPushButton>
 #include <QComboBox>
-#include <QCheckBox>
 #include <QVBoxLayout>
+#include <QLabel>
+#include <QLineEdit>
 #include <vector>
+#include <QTextEdit>
+#include <QStackedWidget>
+#include <QTextStream>
 #include "Candidate.h"
 #include "Downloader.h"
 #include "Parser.h"
-#include "CandidateFilter.h"
+#include "candidatescorer.h"
+#include "candidatefilter.h"
 
 class MainWindow : public QMainWindow {
     Q_OBJECT
@@ -22,24 +27,42 @@ public:
     ~MainWindow();
 
 private slots:
+    void loadCandidates();
+    void displayCandidates(const std::vector<Candidate>& candidatesToShow);
     void applyFilters();
     void saveFilteredCandidates();
     void loadFilteredCandidates();
     void rankCandidates();
-    void loadCandidates();  // New function to load candidate data
+    void generateSummary();
+    void toggleView();
+    void onFilterChanged(const QString& text);
 
 private:
     QTableView *candidateTableView;
     QStandardItemModel *candidateModel;
-    QPushButton *filterButton, *saveButton, *loadButton, *rankButton;
-    QComboBox *universityComboBox, *skillsComboBox;
-    QCheckBox *gpaRangeCheckBox;
+    QPushButton *filterButton;
+    QPushButton *saveButton;
+    QPushButton *loadButton;
+    QPushButton *rankButton;
+    QPushButton *summaryButton;
+    QPushButton *toggleViewButton;
+    QComboBox *filterComboBox;
+    QComboBox *universityComboBox;
+    QComboBox *skillsComboBox;
+    QLineEdit *gpaRangeInput;
+    QLineEdit *scoreInput;
+    QLabel *gpaRangeLabel;
+    QLabel *scoreLabel;
+	QTextEdit* summaryTextEdit;
+    QStackedWidget* stackedWidget;
+	
+    // Layout and central widget
     QVBoxLayout *layout;
     QWidget *centralWidget;
 
-    std::vector<Candidate> candidates;  // Store all candidates
-
-    void displayCandidates(const std::vector<Candidate>& candidatesToShow);
+    std::vector<Candidate> candidates;
+    std::vector<Candidate> currentlyDisplayedCandidates;
+    bool isSummaryView;
 };
 
 #endif // MAINWINDOW_H

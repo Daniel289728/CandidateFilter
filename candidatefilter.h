@@ -8,6 +8,7 @@ public:
     static std::vector<Candidate> filterByGPA(const std::vector<Candidate>& candidates, double minGPA);
     static std::vector<Candidate> filterBySkill(const std::vector<Candidate>& candidates, const std::string& skill);
     static std::vector<Candidate> filterByUniversity(const std::vector<Candidate>& candidates, const std::string& university);
+    static std::vector<Candidate> filterByScore(const std::vector<Candidate>& candidates, double minScore);
 };
 
 #endif
