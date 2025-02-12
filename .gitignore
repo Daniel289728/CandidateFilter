@@ -1,7 +1,0 @@
-/build/
-/logs/
-/data/
-*.o
-*.exe
-*.log
-/.vs/
